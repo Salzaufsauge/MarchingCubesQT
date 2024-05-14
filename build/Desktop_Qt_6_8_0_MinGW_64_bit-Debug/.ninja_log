@@ -1,0 +1,9 @@
+# ninja log v5
+17	1118	7373859032813928	MarchingCubesQT_autogen/timestamp	6752f9ec95390e3f
+17	1118	7373859032813928	MarchingCubesQT_autogen/mocs_compilation.cpp	6752f9ec95390e3f
+17	1118	7373859032813928	C:/dev/MarchingCubesQT/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/MarchingCubesQT_autogen/timestamp	6752f9ec95390e3f
+17	1118	7373859032813928	C:/dev/MarchingCubesQT/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/MarchingCubesQT_autogen/mocs_compilation.cpp	6752f9ec95390e3f
+1119	4329	7373859066107957	CMakeFiles/MarchingCubesQT.dir/MarchingCubesQT_autogen/mocs_compilation.cpp.obj	39ac7267065f6c1a
+1126	4439	7373859067222336	CMakeFiles/MarchingCubesQT.dir/main.cpp.obj	7fe9581a1449f539
+1133	4474	7373859067592932	CMakeFiles/MarchingCubesQT.dir/mainwindow.cpp.obj	5f43a1a57fba0
+4474	4788	7373859070664265	MarchingCubesQT.exe	f505cee8fb230612
