@@ -1,9 +1,17 @@
 # ninja log v5
-17	1118	7373859032813928	MarchingCubesQT_autogen/timestamp	6752f9ec95390e3f
-17	1118	7373859032813928	MarchingCubesQT_autogen/mocs_compilation.cpp	6752f9ec95390e3f
-17	1118	7373859032813928	C:/dev/MarchingCubesQT/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/MarchingCubesQT_autogen/timestamp	6752f9ec95390e3f
-17	1118	7373859032813928	C:/dev/MarchingCubesQT/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/MarchingCubesQT_autogen/mocs_compilation.cpp	6752f9ec95390e3f
+64	377	7373907019773396	MarchingCubesQT_autogen/timestamp	6752f9ec95390e3f
+64	377	7373907019773396	MarchingCubesQT_autogen/mocs_compilation.cpp	6752f9ec95390e3f
+64	377	7373907019773396	C:/dev/MarchingCubesQT/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/MarchingCubesQT_autogen/mocs_compilation.cpp	6752f9ec95390e3f
+64	377	7373907019773396	C:/dev/MarchingCubesQT/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/MarchingCubesQT_autogen/timestamp	6752f9ec95390e3f
+409	4116	7373907057190724	CMakeFiles/MarchingCubesQT.dir/mainwindow.cpp.obj	5f43a1a57fba0
 1119	4329	7373859066107957	CMakeFiles/MarchingCubesQT.dir/MarchingCubesQT_autogen/mocs_compilation.cpp.obj	39ac7267065f6c1a
 1126	4439	7373859067222336	CMakeFiles/MarchingCubesQT.dir/main.cpp.obj	7fe9581a1449f539
-1133	4474	7373859067592932	CMakeFiles/MarchingCubesQT.dir/mainwindow.cpp.obj	5f43a1a57fba0
-4474	4788	7373859070664265	MarchingCubesQT.exe	f505cee8fb230612
+4117	4461	7373907060575469	MarchingCubesQT.exe	f505cee8fb230612
+44	302	7373921726128080	MarchingCubesQT_autogen/timestamp	6752f9ec95390e3f
+44	302	7373921726128080	MarchingCubesQT_autogen/mocs_compilation.cpp	6752f9ec95390e3f
+44	302	7373921726128080	C:/dev/MarchingCubesQT/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/MarchingCubesQT_autogen/timestamp	6752f9ec95390e3f
+44	302	7373921726128080	C:/dev/MarchingCubesQT/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/MarchingCubesQT_autogen/mocs_compilation.cpp	6752f9ec95390e3f
+330	3375	7373921756860223	CMakeFiles/MarchingCubesQT.dir/mainwindow.cpp.obj	5f43a1a57fba0
+3375	3666	7373921759722135	MarchingCubesQT.exe	f505cee8fb230612
+30	68	0	CMakeFiles/clean.additional	baedbe210acaa455
+68	184	0	clean	9dcab56672758b2f
