@@ -39,8 +39,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-maqbiV"
-      binary: "/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-maqbiV"
+      source: "/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-USEdxp"
+      binary: "/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-USEdxp"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "-DQT_QML_DEBUG"
       CMAKE_EXE_LINKER_FLAGS: ""
@@ -48,10 +48,10 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-maqbiV'
+        Change Dir: '/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-USEdxp'
         
-        Run Build Command(s): /usr/bin/ninja-build -v cmTC_0267e
-        [1/2] /usr/bin/g++   -DQT_QML_DEBUG  -fdiagnostics-color=always   -v -o CMakeFiles/cmTC_0267e.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /usr/bin/ninja-build -v cmTC_385ec
+        [1/2] /usr/bin/g++   -DQT_QML_DEBUG  -fdiagnostics-color=always   -v -o CMakeFiles/cmTC_385ec.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
         Using built-in specs.
         COLLECT_GCC=/usr/bin/g++
         OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
@@ -61,8 +61,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 14.1.1 20240507 (Red Hat 14.1.1-1) (GCC) 
-        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-v' '-o' 'CMakeFiles/cmTC_0267e.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_0267e.dir/'
-         /usr/libexec/gcc/x86_64-redhat-linux/14/cc1plus -quiet -v -D_GNU_SOURCE -D QT_QML_DEBUG /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_0267e.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fdiagnostics-color=always -o /tmp/ccBof9zU.s
+        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-v' '-o' 'CMakeFiles/cmTC_385ec.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_385ec.dir/'
+         /usr/libexec/gcc/x86_64-redhat-linux/14/cc1plus -quiet -v -D_GNU_SOURCE -D QT_QML_DEBUG /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_385ec.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fdiagnostics-color=always -o /tmp/cc1vpKKq.s
         GNU C++17 (GCC) version 14.1.1 20240507 (Red Hat 14.1.1-1) (x86_64-redhat-linux)
         	compiled by GNU C version 14.1.1 20240507 (Red Hat 14.1.1-1), GMP version 6.2.1, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.24-GMP
         
@@ -79,13 +79,13 @@ events:
          /usr/include
         End of search list.
         Compiler executable checksum: 41b982261e5e6be58c762c6bba6c4eb2
-        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-v' '-o' 'CMakeFiles/cmTC_0267e.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_0267e.dir/'
-         as -v --64 -o CMakeFiles/cmTC_0267e.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccBof9zU.s
+        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-v' '-o' 'CMakeFiles/cmTC_385ec.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_385ec.dir/'
+         as -v --64 -o CMakeFiles/cmTC_385ec.dir/CMakeCXXCompilerABI.cpp.o /tmp/cc1vpKKq.s
         GNU assembler version 2.41 (x86_64-redhat-linux) using BFD version version 2.41-37.fc40
         COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/14/:/usr/libexec/gcc/x86_64-redhat-linux/14/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/14/:/usr/lib/gcc/x86_64-redhat-linux/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/14/:/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/14/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-v' '-o' 'CMakeFiles/cmTC_0267e.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_0267e.dir/CMakeCXXCompilerABI.cpp.'
-        [2/2] : && /usr/bin/g++ -DQT_QML_DEBUG -v CMakeFiles/cmTC_0267e.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_0267e   && :
+        COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-v' '-o' 'CMakeFiles/cmTC_385ec.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_385ec.dir/CMakeCXXCompilerABI.cpp.'
+        [2/2] : && /usr/bin/g++ -DQT_QML_DEBUG -v CMakeFiles/cmTC_385ec.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_385ec   && :
         Using built-in specs.
         COLLECT_GCC=/usr/bin/g++
         COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/14/lto-wrapper
@@ -98,9 +98,9 @@ events:
         gcc version 14.1.1 20240507 (Red Hat 14.1.1-1) (GCC) 
         COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/14/:/usr/libexec/gcc/x86_64-redhat-linux/14/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/14/:/usr/lib/gcc/x86_64-redhat-linux/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/14/:/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/14/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-D' 'QT_QML_DEBUG' '-v' '-o' 'cmTC_0267e' '-foffload-options=-l_GCC_m' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_0267e.'
-         /usr/libexec/gcc/x86_64-redhat-linux/14/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccgpMOCJ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_0267e /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/14/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/14 -L/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/14/../../.. CMakeFiles/cmTC_0267e.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/14/crtend.o /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crtn.o
-        COLLECT_GCC_OPTIONS='-D' 'QT_QML_DEBUG' '-v' '-o' 'cmTC_0267e' '-foffload-options=-l_GCC_m' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_0267e.'
+        COLLECT_GCC_OPTIONS='-D' 'QT_QML_DEBUG' '-v' '-o' 'cmTC_385ec' '-foffload-options=-l_GCC_m' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_385ec.'
+         /usr/libexec/gcc/x86_64-redhat-linux/14/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccMnLzPi.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_385ec /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/14/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/14 -L/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/14/../../.. CMakeFiles/cmTC_385ec.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/14/crtend.o /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crtn.o
+        COLLECT_GCC_OPTIONS='-D' 'QT_QML_DEBUG' '-v' '-o' 'cmTC_385ec' '-foffload-options=-l_GCC_m' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_385ec.'
         
       exitCode: 0
   -
@@ -138,10 +138,10 @@ events:
     message: |
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
-        ignore line: [Change Dir: '/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-maqbiV']
+        ignore line: [Change Dir: '/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-USEdxp']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/ninja-build -v cmTC_0267e]
-        ignore line: [[1/2] /usr/bin/g++   -DQT_QML_DEBUG  -fdiagnostics-color=always   -v -o CMakeFiles/cmTC_0267e.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /usr/bin/ninja-build -v cmTC_385ec]
+        ignore line: [[1/2] /usr/bin/g++   -DQT_QML_DEBUG  -fdiagnostics-color=always   -v -o CMakeFiles/cmTC_385ec.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/g++]
         ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
@@ -151,8 +151,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 14.1.1 20240507 (Red Hat 14.1.1-1) (GCC) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-v' '-o' 'CMakeFiles/cmTC_0267e.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_0267e.dir/']
-        ignore line: [ /usr/libexec/gcc/x86_64-redhat-linux/14/cc1plus -quiet -v -D_GNU_SOURCE -D QT_QML_DEBUG /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_0267e.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fdiagnostics-color=always -o /tmp/ccBof9zU.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-v' '-o' 'CMakeFiles/cmTC_385ec.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_385ec.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-redhat-linux/14/cc1plus -quiet -v -D_GNU_SOURCE -D QT_QML_DEBUG /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_385ec.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fdiagnostics-color=always -o /tmp/cc1vpKKq.s]
         ignore line: [GNU C++17 (GCC) version 14.1.1 20240507 (Red Hat 14.1.1-1) (x86_64-redhat-linux)]
         ignore line: [	compiled by GNU C version 14.1.1 20240507 (Red Hat 14.1.1-1)  GMP version 6.2.1  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.24-GMP]
         ignore line: []
@@ -169,13 +169,13 @@ events:
         ignore line: [ /usr/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: 41b982261e5e6be58c762c6bba6c4eb2]
-        ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-v' '-o' 'CMakeFiles/cmTC_0267e.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_0267e.dir/']
-        ignore line: [ as -v --64 -o CMakeFiles/cmTC_0267e.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccBof9zU.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-v' '-o' 'CMakeFiles/cmTC_385ec.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_385ec.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_385ec.dir/CMakeCXXCompilerABI.cpp.o /tmp/cc1vpKKq.s]
         ignore line: [GNU assembler version 2.41 (x86_64-redhat-linux) using BFD version version 2.41-37.fc40]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/14/:/usr/libexec/gcc/x86_64-redhat-linux/14/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/14/:/usr/lib/gcc/x86_64-redhat-linux/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/14/:/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/14/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-v' '-o' 'CMakeFiles/cmTC_0267e.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_0267e.dir/CMakeCXXCompilerABI.cpp.']
-        ignore line: [[2/2] : && /usr/bin/g++ -DQT_QML_DEBUG -v CMakeFiles/cmTC_0267e.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_0267e   && :]
+        ignore line: [COLLECT_GCC_OPTIONS='-fdiagnostics-color=always' '-D' 'QT_QML_DEBUG' '-v' '-o' 'CMakeFiles/cmTC_385ec.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_385ec.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [[2/2] : && /usr/bin/g++ -DQT_QML_DEBUG -v CMakeFiles/cmTC_385ec.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_385ec   && :]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/g++]
         ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/14/lto-wrapper]
@@ -188,13 +188,13 @@ events:
         ignore line: [gcc version 14.1.1 20240507 (Red Hat 14.1.1-1) (GCC) ]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/14/:/usr/libexec/gcc/x86_64-redhat-linux/14/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/14/:/usr/lib/gcc/x86_64-redhat-linux/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/14/:/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/14/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-D' 'QT_QML_DEBUG' '-v' '-o' 'cmTC_0267e' '-foffload-options=-l_GCC_m' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_0267e.']
-        link line: [ /usr/libexec/gcc/x86_64-redhat-linux/14/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccgpMOCJ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_0267e /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/14/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/14 -L/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/14/../../.. CMakeFiles/cmTC_0267e.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/14/crtend.o /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crtn.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-D' 'QT_QML_DEBUG' '-v' '-o' 'cmTC_385ec' '-foffload-options=-l_GCC_m' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_385ec.']
+        link line: [ /usr/libexec/gcc/x86_64-redhat-linux/14/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/14/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/14/lto-wrapper -plugin-opt=-fresolution=/tmp/ccMnLzPi.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_385ec /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/14/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/14 -L/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/14/../../.. CMakeFiles/cmTC_385ec.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/14/crtend.o /usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crtn.o]
           arg [/usr/libexec/gcc/x86_64-redhat-linux/14/collect2] ==> ignore
           arg [-plugin] ==> ignore
           arg [/usr/libexec/gcc/x86_64-redhat-linux/14/liblto_plugin.so] ==> ignore
           arg [-plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/14/lto-wrapper] ==> ignore
-          arg [-plugin-opt=-fresolution=/tmp/ccgpMOCJ.res] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccMnLzPi.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
           arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -209,7 +209,7 @@ events:
           arg [-dynamic-linker] ==> ignore
           arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_0267e] ==> ignore
+          arg [cmTC_385ec] ==> ignore
           arg [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crt1.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crt1.o]
           arg [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crti.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/14/../../../../lib64/crti.o]
           arg [/usr/lib/gcc/x86_64-redhat-linux/14/crtbegin.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/14/crtbegin.o]
@@ -218,7 +218,7 @@ events:
           arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
           arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
           arg [-L/usr/lib/gcc/x86_64-redhat-linux/14/../../..] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/14/../../..]
-          arg [CMakeFiles/cmTC_0267e.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [CMakeFiles/cmTC_385ec.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
           arg [-lstdc++] ==> lib [stdc++]
           arg [-lm] ==> lib [m]
           arg [-lgcc_s] ==> lib [gcc_s]
@@ -257,8 +257,8 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-mynFsV"
-      binary: "/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-mynFsV"
+      source: "/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-YxCTtw"
+      binary: "/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-YxCTtw"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "-DQT_QML_DEBUG"
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -268,11 +268,11 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: '/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-mynFsV'
+        Change Dir: '/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-YxCTtw'
         
-        Run Build Command(s): /usr/bin/ninja-build -v cmTC_c7a3a
-        [1/2] /usr/bin/g++ -DCMAKE_HAVE_LIBC_PTHREAD  -DQT_QML_DEBUG  -std=gnu++17 -fdiagnostics-color=always -o CMakeFiles/cmTC_c7a3a.dir/src.cxx.o -c /home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-mynFsV/src.cxx
-        [2/2] : && /usr/bin/g++ -DQT_QML_DEBUG  CMakeFiles/cmTC_c7a3a.dir/src.cxx.o -o cmTC_c7a3a   && :
+        Run Build Command(s): /usr/bin/ninja-build -v cmTC_9ac8a
+        [1/2] /usr/bin/g++ -DCMAKE_HAVE_LIBC_PTHREAD  -DQT_QML_DEBUG  -std=gnu++17 -fdiagnostics-color=always -o CMakeFiles/cmTC_9ac8a.dir/src.cxx.o -c /home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-YxCTtw/src.cxx
+        [2/2] : && /usr/bin/g++ -DQT_QML_DEBUG  CMakeFiles/cmTC_9ac8a.dir/src.cxx.o -o cmTC_9ac8a   && :
         
       exitCode: 0
   -
@@ -290,12 +290,12 @@ events:
       - "/home/leon/Qt/6.8.0/gcc_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:42 (_qt_internal_find_qt_dependencies)"
       - "/home/leon/Qt/6.8.0/gcc_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:43 (include)"
       - "/home/leon/Qt/6.8.0/gcc_64/lib/cmake/Qt6/Qt6Config.cmake:178 (find_package)"
-      - "CMakeLists.txt:13 (find_package)"
+      - "CMakeLists.txt:19 (find_package)"
     checks:
       - "Performing Test HAVE_STDATOMIC"
     directories:
-      source: "/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-JIyg6b"
-      binary: "/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-JIyg6b"
+      source: "/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-iLvRlp"
+      binary: "/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-iLvRlp"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "-DQT_QML_DEBUG"
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -305,11 +305,11 @@ events:
       variable: "HAVE_STDATOMIC"
       cached: true
       stdout: |
-        Change Dir: '/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-JIyg6b'
+        Change Dir: '/home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-iLvRlp'
         
-        Run Build Command(s): /usr/bin/ninja-build -v cmTC_c4a2a
-        [1/2] /usr/bin/g++ -DHAVE_STDATOMIC  -DQT_QML_DEBUG  -std=gnu++17 -fdiagnostics-color=always -o CMakeFiles/cmTC_c4a2a.dir/src.cxx.o -c /home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-JIyg6b/src.cxx
-        [2/2] : && /usr/bin/g++ -DQT_QML_DEBUG  CMakeFiles/cmTC_c4a2a.dir/src.cxx.o -o cmTC_c4a2a   && :
+        Run Build Command(s): /usr/bin/ninja-build -v cmTC_7c1a3
+        [1/2] /usr/bin/g++ -DHAVE_STDATOMIC  -DQT_QML_DEBUG  -std=gnu++17 -fdiagnostics-color=always -o CMakeFiles/cmTC_7c1a3.dir/src.cxx.o -c /home/leon/dev/MarchingCubesQT/build/Desktop-Debug/CMakeFiles/CMakeScratch/TryCompile-iLvRlp/src.cxx
+        [2/2] : && /usr/bin/g++ -DQT_QML_DEBUG  CMakeFiles/cmTC_7c1a3.dir/src.cxx.o -o cmTC_7c1a3   && :
         
       exitCode: 0
 ...

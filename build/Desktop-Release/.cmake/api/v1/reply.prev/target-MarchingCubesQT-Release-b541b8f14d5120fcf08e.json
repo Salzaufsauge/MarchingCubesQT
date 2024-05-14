@@ -1,0 +1,673 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "MarchingCubesQT"
+		}
+	],
+	"backtrace" : 4,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"_qt_internal_create_executable",
+			"qt6_add_executable",
+			"qt_add_executable",
+			"install",
+			"target_link_libraries",
+			"set_target_properties",
+			"include",
+			"find_package",
+			"set_property",
+			"find_dependency",
+			"_qt_internal_find_third_party_dependencies",
+			"_qt_internal_find_qt_dependencies"
+		],
+		"files" : 
+		[
+			"/home/leon/Qt/6.8.0/gcc_64/lib/cmake/Qt6Core/Qt6CoreMacros.cmake",
+			"CMakeLists.txt",
+			"/home/leon/Qt/6.8.0/gcc_64/lib/cmake/Qt63DRender/Qt63DRenderTargets.cmake",
+			"/home/leon/Qt/6.8.0/gcc_64/lib/cmake/Qt63DRender/Qt63DRenderConfig.cmake",
+			"/home/leon/Qt/6.8.0/gcc_64/lib/cmake/Qt6/Qt6Config.cmake",
+			"/home/leon/Qt/6.8.0/gcc_64/lib/cmake/Qt63DExtras/Qt63DExtrasTargets.cmake",
+			"/home/leon/Qt/6.8.0/gcc_64/lib/cmake/Qt63DExtras/Qt63DExtrasConfig.cmake",
+			"/home/leon/Qt/6.8.0/gcc_64/lib/cmake/Qt63DCore/Qt63DCoreTargets.cmake",
+			"/home/leon/Qt/6.8.0/gcc_64/lib/cmake/Qt63DCore/Qt63DCoreConfig.cmake",
+			"/home/leon/Qt/6.8.0/gcc_64/lib/cmake/Qt6Widgets/Qt6WidgetsTargets.cmake",
+			"/home/leon/Qt/6.8.0/gcc_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake",
+			"/usr/share/cmake/Modules/FindOpenGL.cmake",
+			"/home/leon/Qt/6.8.0/gcc_64/lib/cmake/Qt6/FindWrapOpenGL.cmake",
+			"/usr/share/cmake/Modules/CMakeFindDependencyMacro.cmake",
+			"/home/leon/Qt/6.8.0/gcc_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake",
+			"/home/leon/Qt/6.8.0/gcc_64/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake",
+			"/home/leon/Qt/6.8.0/gcc_64/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake",
+			"/home/leon/Qt/6.8.0/gcc_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 35,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 931,
+				"parent" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 622,
+				"parent" : 2
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 676,
+				"parent" : 3
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 82,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 59,
+				"parent" : 0
+			},
+			{
+				"command" : 8,
+				"file" : 1,
+				"line" : 19,
+				"parent" : 0
+			},
+			{
+				"file" : 4,
+				"parent" : 7
+			},
+			{
+				"command" : 8,
+				"file" : 4,
+				"line" : 178,
+				"parent" : 8
+			},
+			{
+				"file" : 3,
+				"parent" : 9
+			},
+			{
+				"command" : 7,
+				"file" : 3,
+				"line" : 55,
+				"parent" : 10
+			},
+			{
+				"file" : 2,
+				"parent" : 11
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 61,
+				"parent" : 12
+			},
+			{
+				"command" : 8,
+				"file" : 4,
+				"line" : 178,
+				"parent" : 8
+			},
+			{
+				"file" : 6,
+				"parent" : 14
+			},
+			{
+				"command" : 7,
+				"file" : 6,
+				"line" : 55,
+				"parent" : 15
+			},
+			{
+				"file" : 5,
+				"parent" : 16
+			},
+			{
+				"command" : 6,
+				"file" : 5,
+				"line" : 61,
+				"parent" : 17
+			},
+			{
+				"command" : 8,
+				"file" : 4,
+				"line" : 178,
+				"parent" : 8
+			},
+			{
+				"file" : 8,
+				"parent" : 19
+			},
+			{
+				"command" : 7,
+				"file" : 8,
+				"line" : 55,
+				"parent" : 20
+			},
+			{
+				"file" : 7,
+				"parent" : 21
+			},
+			{
+				"command" : 6,
+				"file" : 7,
+				"line" : 61,
+				"parent" : 22
+			},
+			{
+				"command" : 8,
+				"file" : 4,
+				"line" : 178,
+				"parent" : 8
+			},
+			{
+				"file" : 10,
+				"parent" : 24
+			},
+			{
+				"command" : 7,
+				"file" : 10,
+				"line" : 55,
+				"parent" : 25
+			},
+			{
+				"file" : 9,
+				"parent" : 26
+			},
+			{
+				"command" : 6,
+				"file" : 9,
+				"line" : 61,
+				"parent" : 27
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 623,
+				"parent" : 2
+			},
+			{
+				"command" : 7,
+				"file" : 10,
+				"line" : 43,
+				"parent" : 25
+			},
+			{
+				"file" : 17,
+				"parent" : 30
+			},
+			{
+				"command" : 12,
+				"file" : 17,
+				"line" : 42,
+				"parent" : 31
+			},
+			{
+				"command" : 10,
+				"file" : 14,
+				"line" : 111,
+				"parent" : 32
+			},
+			{
+				"command" : 8,
+				"file" : 13,
+				"line" : 76,
+				"parent" : 33
+			},
+			{
+				"file" : 16,
+				"parent" : 34
+			},
+			{
+				"command" : 7,
+				"file" : 16,
+				"line" : 43,
+				"parent" : 35
+			},
+			{
+				"file" : 15,
+				"parent" : 36
+			},
+			{
+				"command" : 11,
+				"file" : 15,
+				"line" : 33,
+				"parent" : 37
+			},
+			{
+				"command" : 10,
+				"file" : 14,
+				"line" : 36,
+				"parent" : 38
+			},
+			{
+				"command" : 8,
+				"file" : 13,
+				"line" : 76,
+				"parent" : 39
+			},
+			{
+				"file" : 12,
+				"parent" : 40
+			},
+			{
+				"command" : 8,
+				"file" : 12,
+				"line" : 13,
+				"parent" : 41
+			},
+			{
+				"file" : 11,
+				"parent" : 42
+			},
+			{
+				"command" : 9,
+				"file" : 11,
+				"line" : 673,
+				"parent" : 43
+			},
+			{
+				"command" : 6,
+				"file" : 11,
+				"line" : 671,
+				"parent" : 43
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-O3 -DNDEBUG -std=gnu++17 -fdiagnostics-color=always"
+				},
+				{
+					"backtrace" : 29,
+					"fragment" : "-fPIC"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 6,
+					"define" : "QT_3DCORE_LIB"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "QT_3DEXTRAS_LIB"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "QT_3DINPUT_LIB"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "QT_3DLOGIC_LIB"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "QT_3DRENDER_LIB"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "QT_CONCURRENT_LIB"
+				},
+				{
+					"backtrace" : 29,
+					"define" : "QT_CORE_LIB"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "QT_GUI_LIB"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "QT_NETWORK_LIB"
+				},
+				{
+					"backtrace" : 29,
+					"define" : "QT_NO_DEBUG"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "QT_OPENGL_LIB"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "QT_WIDGETS_LIB"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 0,
+					"path" : "/home/leon/dev/MarchingCubesQT/build/Desktop-Release/MarchingCubesQT_autogen/include"
+				},
+				{
+					"backtrace" : 29,
+					"isSystem" : true,
+					"path" : "/home/leon/Qt/6.8.0/gcc_64/include/QtCore"
+				},
+				{
+					"backtrace" : 29,
+					"isSystem" : true,
+					"path" : "/home/leon/Qt/6.8.0/gcc_64/include"
+				},
+				{
+					"backtrace" : 29,
+					"isSystem" : true,
+					"path" : "/home/leon/Qt/6.8.0/gcc_64/mkspecs/linux-g++"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/home/leon/Qt/6.8.0/gcc_64/include/QtWidgets"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/home/leon/Qt/6.8.0/gcc_64/include/QtGui"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/home/leon/Qt/6.8.0/gcc_64/include/Qt3DCore"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/home/leon/Qt/6.8.0/gcc_64/include/QtConcurrent"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/home/leon/Qt/6.8.0/gcc_64/include/QtNetwork"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/home/leon/Qt/6.8.0/gcc_64/include/Qt3DRender"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/home/leon/Qt/6.8.0/gcc_64/include/QtOpenGL"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/home/leon/Qt/6.8.0/gcc_64/include/Qt3DInput"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/home/leon/Qt/6.8.0/gcc_64/include/Qt3DExtras"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/home/leon/Qt/6.8.0/gcc_64/include/Qt3DLogic"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					29,
+					29
+				],
+				"standard" : "17"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				7
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"id" : "MarchingCubesQT_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "MarchingCubesQT_autogen::@6890427a1f51a3e7e1df"
+		}
+	],
+	"id" : "MarchingCubesQT::@6890427a1f51a3e7e1df",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 5,
+				"path" : "bin"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "/usr/local"
+		}
+	},
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-O3 -DNDEBUG",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/home/leon/Qt/6.8.0/gcc_64/lib:",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "/home/leon/Qt/6.8.0/gcc_64/lib/libQt6Widgets.so.6.8.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "/home/leon/Qt/6.8.0/gcc_64/lib/libQt63DExtras.so.6.8.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "/home/leon/Qt/6.8.0/gcc_64/lib/libQt63DRender.so.6.8.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 13,
+				"fragment" : "/home/leon/Qt/6.8.0/gcc_64/lib/libQt6OpenGL.so.6.8.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "/home/leon/Qt/6.8.0/gcc_64/lib/libQt63DInput.so.6.8.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 18,
+				"fragment" : "/home/leon/Qt/6.8.0/gcc_64/lib/libQt63DLogic.so.6.8.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "/home/leon/Qt/6.8.0/gcc_64/lib/libQt63DCore.so.6.8.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 23,
+				"fragment" : "/home/leon/Qt/6.8.0/gcc_64/lib/libQt6Concurrent.so.6.8.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 23,
+				"fragment" : "/home/leon/Qt/6.8.0/gcc_64/lib/libQt6Network.so.6.8.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 28,
+				"fragment" : "/home/leon/Qt/6.8.0/gcc_64/lib/libQt6Gui.so.6.8.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 29,
+				"fragment" : "/home/leon/Qt/6.8.0/gcc_64/lib/libQt6Core.so.6.8.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 44,
+				"fragment" : "/usr/lib64/libGLX.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 45,
+				"fragment" : "/usr/lib64/libOpenGL.so",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "MarchingCubesQT",
+	"nameOnDisk" : "MarchingCubesQT",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				7
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				3,
+				6,
+				8
+			]
+		},
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				4,
+				5,
+				9
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				10
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/Desktop-Release/MarchingCubesQT_autogen/mocs_compilation.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "main.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "mainwindow.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "mainwindow.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "mainwindow.ui",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"path" : "README.md",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"path" : "mc3dviewer.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "mc3dviewer.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/Desktop-Release/MarchingCubesQT_autogen/include/ui_mainwindow.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/Desktop-Release/MarchingCubesQT_autogen/timestamp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/Desktop-Release/MarchingCubesQT_autogen/timestamp.rule",
+			"sourceGroupIndex" : 3
+		}
+	],
+	"type" : "EXECUTABLE"
+}
