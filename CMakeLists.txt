@@ -37,6 +37,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         README.md
         mc3dviewer.hpp mc3dviewer.cpp
+        inputwidget.hpp inputwidget.cpp
+        outputwidget.hpp outputwidget.cpp
+        .gitignore
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MarchingCubesQT APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

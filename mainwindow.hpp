@@ -8,6 +8,9 @@
 #include <Qt3DInput/Qt3DInput>
 #include <Qt3DExtras/Qt3DExtras>
 
+#include "inputwidget.hpp"
+#include "outputwidget.hpp"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -25,13 +28,8 @@ public:
 private:
     Ui::MainWindow *ui;
     QUrl modelUrl;
-    Qt3DCore::QEntity *inputMesh;
-    Qt3DCore::QEntity *inputRoot;
-    Qt3DExtras::Qt3DWindow *inputView;
-    Qt3DExtras::Qt3DWindow *outputView;
-    QWidget *inputWidget;
-    QWidget *outputWidget;
-    Qt3DRender::QMesh *newMesh;
+    InputWidget *in;
+    OutputWidget *out;
 
 private slots:
     void loadButtonSlot();
