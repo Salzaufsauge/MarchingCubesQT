@@ -1,9 +1,0 @@
-/home/leon/dev/MarchingCubesQT/build/Desktop-Release/CMakeFiles/MarchingCubesQT.dir
-/home/leon/dev/MarchingCubesQT/build/Desktop-Release/CMakeFiles/edit_cache.dir
-/home/leon/dev/MarchingCubesQT/build/Desktop-Release/CMakeFiles/rebuild_cache.dir
-/home/leon/dev/MarchingCubesQT/build/Desktop-Release/CMakeFiles/list_install_components.dir
-/home/leon/dev/MarchingCubesQT/build/Desktop-Release/CMakeFiles/install.dir
-/home/leon/dev/MarchingCubesQT/build/Desktop-Release/CMakeFiles/install/local.dir
-/home/leon/dev/MarchingCubesQT/build/Desktop-Release/CMakeFiles/install/strip.dir
-/home/leon/dev/MarchingCubesQT/build/Desktop-Release/CMakeFiles/MarchingCubesQT_autogen_timestamp_deps.dir
-/home/leon/dev/MarchingCubesQT/build/Desktop-Release/CMakeFiles/MarchingCubesQT_autogen.dir
