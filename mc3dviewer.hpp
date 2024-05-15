@@ -8,13 +8,16 @@
 #include <Qt3DInput/Qt3DInput>
 #include <Qt3DExtras/Qt3DExtras>
 
-class Mc3DViewer : public QWidget
+class Mc3DViewer
 {
 public:
-    Mc3DViewer(QWidget *parent = nullptr,QVBoxLayout *vboxLayout = nullptr);
+    Mc3DViewer(QVBoxLayout *vboxLayout);
+private:
+    void initCamera();
 protected:
+    QWidget *widget;
     Qt3DCore::QEntity *rootEntity;
+    Qt3DCore::QEntity *objectEntity;
     Qt3DExtras::QGoochMaterial *material;
     Qt3DExtras::Qt3DWindow *view;
-
 };

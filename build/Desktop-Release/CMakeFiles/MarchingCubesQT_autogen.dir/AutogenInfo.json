@@ -547,6 +547,12 @@
 	"HEADERS" : 
 	[
 		[
+			"/home/leon/dev/MarchingCubesQT/inputwidget.hpp",
+			"MU",
+			"EWIEGA46WW/moc_inputwidget.cpp",
+			null
+		],
+		[
 			"/home/leon/dev/MarchingCubesQT/mainwindow.hpp",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
@@ -556,6 +562,12 @@
 			"/home/leon/dev/MarchingCubesQT/mc3dviewer.hpp",
 			"MU",
 			"EWIEGA46WW/moc_mc3dviewer.cpp",
+			null
+		],
+		[
+			"/home/leon/dev/MarchingCubesQT/outputwidget.hpp",
+			"MU",
+			"EWIEGA46WW/moc_outputwidget.cpp",
 			null
 		]
 	],
@@ -639,9 +651,11 @@
 	"SETTINGS_FILE" : "/home/leon/dev/MarchingCubesQT/build/Desktop-Release/CMakeFiles/MarchingCubesQT_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "/home/leon/dev/MarchingCubesQT/inputwidget.cpp", "MU", null ],
 		[ "/home/leon/dev/MarchingCubesQT/main.cpp", "MU", null ],
 		[ "/home/leon/dev/MarchingCubesQT/mainwindow.cpp", "MU", null ],
-		[ "/home/leon/dev/MarchingCubesQT/mc3dviewer.cpp", "MU", null ]
+		[ "/home/leon/dev/MarchingCubesQT/mc3dviewer.cpp", "MU", null ],
+		[ "/home/leon/dev/MarchingCubesQT/outputwidget.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

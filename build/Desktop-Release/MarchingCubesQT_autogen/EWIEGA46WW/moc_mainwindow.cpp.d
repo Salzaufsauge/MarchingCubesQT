@@ -874,6 +874,9 @@
   /home/leon/Qt/6.8.0/gcc_64/include/QtWidgets/qwidget.h \
   /home/leon/Qt/6.8.0/gcc_64/include/QtWidgets/qwidgetaction.h \
   /home/leon/Qt/6.8.0/gcc_64/include/QtWidgets/qwizard.h \
+  /home/leon/dev/MarchingCubesQT/inputwidget.hpp \
+  /home/leon/dev/MarchingCubesQT/mc3dviewer.hpp \
+  /home/leon/dev/MarchingCubesQT/outputwidget.hpp \
   /usr/include/GL/gl.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \

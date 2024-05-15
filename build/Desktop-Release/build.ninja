@@ -81,6 +81,22 @@ build CMakeFiles/MarchingCubesQT.dir/mc3dviewer.cpp.o: CXX_COMPILER__MarchingCub
   OBJECT_DIR = CMakeFiles/MarchingCubesQT.dir
   OBJECT_FILE_DIR = CMakeFiles/MarchingCubesQT.dir
 
+build CMakeFiles/MarchingCubesQT.dir/inputwidget.cpp.o: CXX_COMPILER__MarchingCubesQT_unscanned_Release /home/leon/dev/MarchingCubesQT/inputwidget.cpp || cmake_object_order_depends_target_MarchingCubesQT
+  DEFINES = -DQT_3DCORE_LIB -DQT_3DEXTRAS_LIB -DQT_3DINPUT_LIB -DQT_3DLOGIC_LIB -DQT_3DRENDER_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/MarchingCubesQT.dir/inputwidget.cpp.o.d
+  FLAGS = -O3 -DNDEBUG -std=gnu++17 -fdiagnostics-color=always -fPIC
+  INCLUDES = -I/home/leon/dev/MarchingCubesQT/build/Desktop-Release/MarchingCubesQT_autogen/include -isystem /home/leon/Qt/6.8.0/gcc_64/include/QtCore -isystem /home/leon/Qt/6.8.0/gcc_64/include -isystem /home/leon/Qt/6.8.0/gcc_64/mkspecs/linux-g++ -isystem /home/leon/Qt/6.8.0/gcc_64/include/QtWidgets -isystem /home/leon/Qt/6.8.0/gcc_64/include/QtGui -isystem /home/leon/Qt/6.8.0/gcc_64/include/Qt3DCore -isystem /home/leon/Qt/6.8.0/gcc_64/include/QtConcurrent -isystem /home/leon/Qt/6.8.0/gcc_64/include/QtNetwork -isystem /home/leon/Qt/6.8.0/gcc_64/include/Qt3DRender -isystem /home/leon/Qt/6.8.0/gcc_64/include/QtOpenGL -isystem /home/leon/Qt/6.8.0/gcc_64/include/Qt3DInput -isystem /home/leon/Qt/6.8.0/gcc_64/include/Qt3DExtras -isystem /home/leon/Qt/6.8.0/gcc_64/include/Qt3DLogic
+  OBJECT_DIR = CMakeFiles/MarchingCubesQT.dir
+  OBJECT_FILE_DIR = CMakeFiles/MarchingCubesQT.dir
+
+build CMakeFiles/MarchingCubesQT.dir/outputwidget.cpp.o: CXX_COMPILER__MarchingCubesQT_unscanned_Release /home/leon/dev/MarchingCubesQT/outputwidget.cpp || cmake_object_order_depends_target_MarchingCubesQT
+  DEFINES = -DQT_3DCORE_LIB -DQT_3DEXTRAS_LIB -DQT_3DINPUT_LIB -DQT_3DLOGIC_LIB -DQT_3DRENDER_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_OPENGL_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/MarchingCubesQT.dir/outputwidget.cpp.o.d
+  FLAGS = -O3 -DNDEBUG -std=gnu++17 -fdiagnostics-color=always -fPIC
+  INCLUDES = -I/home/leon/dev/MarchingCubesQT/build/Desktop-Release/MarchingCubesQT_autogen/include -isystem /home/leon/Qt/6.8.0/gcc_64/include/QtCore -isystem /home/leon/Qt/6.8.0/gcc_64/include -isystem /home/leon/Qt/6.8.0/gcc_64/mkspecs/linux-g++ -isystem /home/leon/Qt/6.8.0/gcc_64/include/QtWidgets -isystem /home/leon/Qt/6.8.0/gcc_64/include/QtGui -isystem /home/leon/Qt/6.8.0/gcc_64/include/Qt3DCore -isystem /home/leon/Qt/6.8.0/gcc_64/include/QtConcurrent -isystem /home/leon/Qt/6.8.0/gcc_64/include/QtNetwork -isystem /home/leon/Qt/6.8.0/gcc_64/include/Qt3DRender -isystem /home/leon/Qt/6.8.0/gcc_64/include/QtOpenGL -isystem /home/leon/Qt/6.8.0/gcc_64/include/Qt3DInput -isystem /home/leon/Qt/6.8.0/gcc_64/include/Qt3DExtras -isystem /home/leon/Qt/6.8.0/gcc_64/include/Qt3DLogic
+  OBJECT_DIR = CMakeFiles/MarchingCubesQT.dir
+  OBJECT_FILE_DIR = CMakeFiles/MarchingCubesQT.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target MarchingCubesQT
@@ -89,7 +105,7 @@ build CMakeFiles/MarchingCubesQT.dir/mc3dviewer.cpp.o: CXX_COMPILER__MarchingCub
 #############################################
 # Link the executable MarchingCubesQT
 
-build MarchingCubesQT: CXX_EXECUTABLE_LINKER__MarchingCubesQT_Release CMakeFiles/MarchingCubesQT.dir/MarchingCubesQT_autogen/mocs_compilation.cpp.o CMakeFiles/MarchingCubesQT.dir/main.cpp.o CMakeFiles/MarchingCubesQT.dir/mainwindow.cpp.o CMakeFiles/MarchingCubesQT.dir/mc3dviewer.cpp.o | /home/leon/Qt/6.8.0/gcc_64/lib/libQt6Widgets.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt63DExtras.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt63DRender.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt6OpenGL.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt63DInput.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt63DLogic.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt63DCore.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt6Concurrent.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt6Network.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt6Gui.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt6Core.so.6.8.0 /usr/lib64/libGLX.so /usr/lib64/libOpenGL.so || MarchingCubesQT_autogen MarchingCubesQT_autogen_timestamp_deps
+build MarchingCubesQT: CXX_EXECUTABLE_LINKER__MarchingCubesQT_Release CMakeFiles/MarchingCubesQT.dir/MarchingCubesQT_autogen/mocs_compilation.cpp.o CMakeFiles/MarchingCubesQT.dir/main.cpp.o CMakeFiles/MarchingCubesQT.dir/mainwindow.cpp.o CMakeFiles/MarchingCubesQT.dir/mc3dviewer.cpp.o CMakeFiles/MarchingCubesQT.dir/inputwidget.cpp.o CMakeFiles/MarchingCubesQT.dir/outputwidget.cpp.o | /home/leon/Qt/6.8.0/gcc_64/lib/libQt6Widgets.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt63DExtras.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt63DRender.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt6OpenGL.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt63DInput.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt63DLogic.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt63DCore.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt6Concurrent.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt6Network.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt6Gui.so.6.8.0 /home/leon/Qt/6.8.0/gcc_64/lib/libQt6Core.so.6.8.0 /usr/lib64/libGLX.so /usr/lib64/libOpenGL.so || MarchingCubesQT_autogen MarchingCubesQT_autogen_timestamp_deps
   FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = -Wl,-rpath,/home/leon/Qt/6.8.0/gcc_64/lib:  /home/leon/Qt/6.8.0/gcc_64/lib/libQt6Widgets.so.6.8.0  /home/leon/Qt/6.8.0/gcc_64/lib/libQt63DExtras.so.6.8.0  /home/leon/Qt/6.8.0/gcc_64/lib/libQt63DRender.so.6.8.0  /home/leon/Qt/6.8.0/gcc_64/lib/libQt6OpenGL.so.6.8.0  /home/leon/Qt/6.8.0/gcc_64/lib/libQt63DInput.so.6.8.0  /home/leon/Qt/6.8.0/gcc_64/lib/libQt63DLogic.so.6.8.0  /home/leon/Qt/6.8.0/gcc_64/lib/libQt63DCore.so.6.8.0  /home/leon/Qt/6.8.0/gcc_64/lib/libQt6Concurrent.so.6.8.0  /home/leon/Qt/6.8.0/gcc_64/lib/libQt6Network.so.6.8.0  /home/leon/Qt/6.8.0/gcc_64/lib/libQt6Gui.so.6.8.0  /home/leon/Qt/6.8.0/gcc_64/lib/libQt6Core.so.6.8.0  /usr/lib64/libGLX.so  /usr/lib64/libOpenGL.so
   OBJECT_DIR = CMakeFiles/MarchingCubesQT.dir

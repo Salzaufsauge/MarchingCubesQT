@@ -1241,12 +1241,16 @@ MarchingCubesQT_autogen/timestamp: \
   CMakeFiles/3.28.2/CMakeCXXCompiler.cmake \
   CMakeFiles/3.28.2/CMakeSystem.cmake \
   MarchingCubesQT_autogen/moc_predefs.h \
+  /home/leon/dev/MarchingCubesQT/inputwidget.cpp \
+  /home/leon/dev/MarchingCubesQT/inputwidget.hpp \
   /home/leon/dev/MarchingCubesQT/main.cpp \
   /home/leon/dev/MarchingCubesQT/mainwindow.cpp \
   /home/leon/dev/MarchingCubesQT/mainwindow.hpp \
   /home/leon/dev/MarchingCubesQT/mainwindow.ui \
   /home/leon/dev/MarchingCubesQT/mc3dviewer.cpp \
   /home/leon/dev/MarchingCubesQT/mc3dviewer.hpp \
+  /home/leon/dev/MarchingCubesQT/outputwidget.cpp \
+  /home/leon/dev/MarchingCubesQT/outputwidget.hpp \
   /usr/bin/cmake \
   /usr/include/GL/gl.h \
   /usr/include/alloca.h \
