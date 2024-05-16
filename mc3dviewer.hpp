@@ -12,6 +12,7 @@ class Mc3DViewer
 {
 public:
     Mc3DViewer(QVBoxLayout *vboxLayout);
+    ~Mc3DViewer();
 private:
     void initCamera();
 protected:
@@ -20,4 +21,9 @@ protected:
     Qt3DCore::QEntity *objectEntity;
     Qt3DExtras::QGoochMaterial *material;
     Qt3DExtras::Qt3DWindow *view;
+    Qt3DRender::QCamera *inputCam;
+    Qt3DCore::QEntity *lightEntity;
+    Qt3DRender::QPointLight *light;
+    Qt3DCore::QTransform *lightTransform;
+    Qt3DExtras::QFirstPersonCameraController *camController;
 };

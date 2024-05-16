@@ -9,5 +9,5 @@ public:
     void addMesh(QUrl url);
     bool isEmpty();
 private:
-    Qt3DRender::QMesh *mesh;
+    Qt3DRender::QMesh mesh;
 };

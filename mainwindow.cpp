@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete in;
+    delete out;
 }
 
 void MainWindow::loadButtonSlot()

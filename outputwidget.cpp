@@ -5,3 +5,4 @@ OutputWidget::OutputWidget(QVBoxLayout *vboxLayout)
 {
 
 }
+
