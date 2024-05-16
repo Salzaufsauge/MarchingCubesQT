@@ -1,3 +1,6 @@
 #include "scalarfield.h"
 
-ScalarField::ScalarField() {}
+
+ScalarField::ScalarField()
+{
+}

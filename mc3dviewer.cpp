@@ -1,7 +1,7 @@
 #include "mc3dviewer.hpp"
 
-Mc3DViewer::Mc3DViewer(QVBoxLayout *vboxLayout)
-    :widget(nullptr),rootEntity(nullptr), objectEntity(nullptr), material(nullptr), view(nullptr)
+Mc3DViewer::Mc3DViewer(QVBoxLayout *vboxLayout,QWidget* parent)
+    :QWidget(parent),widget(nullptr),rootEntity(nullptr), objectEntity(nullptr), material(nullptr), view(nullptr)
 {
     view = new Qt3DExtras::Qt3DWindow();
     view->defaultFrameGraph()->setClearColor(QColor::fromRgb(100,100,100));

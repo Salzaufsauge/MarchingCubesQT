@@ -8,10 +8,11 @@
 #include <Qt3DInput/Qt3DInput>
 #include <Qt3DExtras/Qt3DExtras>
 
-class Mc3DViewer
+class Mc3DViewer : public QWidget
 {
+    Q_OBJECT
 public:
-    Mc3DViewer(QVBoxLayout *vboxLayout);
+    Mc3DViewer(QVBoxLayout *vboxLayout, QWidget* parent = nullptr);
     ~Mc3DViewer();
 private:
     void initCamera();
