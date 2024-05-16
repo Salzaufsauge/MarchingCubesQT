@@ -4,7 +4,7 @@ Mc3DViewer::Mc3DViewer(QVBoxLayout *vboxLayout)
     :widget(nullptr),rootEntity(nullptr), objectEntity(nullptr), material(nullptr), view(nullptr)
 {
     view = new Qt3DExtras::Qt3DWindow();
-    view->defaultFrameGraph()->setClearColor(QColor::fromRgb(255,255,255));
+    view->defaultFrameGraph()->setClearColor(QColor::fromRgb(100,100,100));
 
     widget = QWidget::createWindowContainer(view);
     widget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);

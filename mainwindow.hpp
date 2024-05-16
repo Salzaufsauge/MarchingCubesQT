@@ -10,6 +10,7 @@
 
 #include "inputwidget.hpp"
 #include "outputwidget.hpp"
+#include "scalarfield.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -30,6 +31,7 @@ private:
     QUrl modelUrl;
     InputWidget *in;
     OutputWidget *out;
+    ScalarField data;
 
 private slots:
     void loadButtonSlot();
