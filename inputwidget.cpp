@@ -45,21 +45,38 @@ void InputWidget::extractMeshData()
             }
         }else if(attr->attributeType() == Qt3DCore::QAttribute::IndexAttribute){    //extract indices
             QByteArray indexData = attr->buffer()->data();
-            const unsigned int* indexList = reinterpret_cast<const unsigned int*>(indexData.constData());
-            uint indexCount = indexData.size() / sizeof(unsigned int);
-            for(int i = 0; i < indexCount; ++i){
-                indices << indexList[i];
+            switch(attr->vertexBaseType()){
+            case Qt3DCore::QAttribute::VertexBaseType::UnsignedInt:{
+                const unsigned int* indexList = reinterpret_cast<const unsigned int*>(indexData.constData());
+                uint indexCount = indexData.size() / sizeof(unsigned int);
+                for(int i = 0; i < indexCount; ++i){
+                    indices << indexList[i];
+                }
+                break;
+            }
+            case Qt3DCore::QAttribute::VertexBaseType::UnsignedShort:{
+                const unsigned short* indexList = reinterpret_cast<const unsigned short*>(indexData.constData());
+                unsigned short indexCount = indexData.size() / sizeof(unsigned short);
+                for(int i = 0; i < indexCount; ++i){
+                    indices <<  static_cast<unsigned int>(indexList[i]);
+                }
+                break;
+            }
+            default:
+                qDebug() << QString("unsupported type");
+                break;
             }
         }
     }
-    qDebug() << minExtend << maxExtend;
-    constructGrid(100);
     if(!(vertices.isEmpty() && indices.isEmpty()))
         emit dataExtracted();
 }
 
 void InputWidget::constructGrid(unsigned int res)
 {
+    if(!(mesh->status() == Qt3DRender::QMesh::Status::Ready)){
+        qDebug() << "mesh not ready";
+    }
     grid.clear();
     float lenX = maxExtend.x() - minExtend.x();
     float lenY = maxExtend.y() - minExtend.y();
@@ -95,6 +112,21 @@ void InputWidget::constructGrid(unsigned int res)
             }
         }
     }
+}
+
+const QList<QVector3D> &InputWidget::getGrid() const
+{
+    return grid;
+}
+
+const QList<QVector3D> &InputWidget::getVertices() const
+{
+    return vertices;
+}
+
+const QList<uint> &InputWidget::getIndices() const
+{
+    return indices;
 }
 
 void InputWidget::meshStatusChanged(Qt3DRender::QMesh::Status newStatus)

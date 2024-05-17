@@ -8,16 +8,21 @@ class InputWidget : public Mc3DViewer
 public:
     InputWidget(QVBoxLayout *vboxLayout);
     void addMesh(QUrl url);
+    void constructGrid(const uint res);
+    const QList<QVector3D> &getGrid() const;
+    const QList<QVector3D> &getVertices() const;
+    const QList<uint> &getIndices() const;
+
 private:
     Qt3DRender::QMesh *mesh;
     QList<QVector3D> vertices;
-    QList<uint>indices;
+    QList<uint> indices;
     QList<QVector3D> grid;
     QVector3D maxExtend;
     QVector3D minExtend;
 
     void extractMeshData();
-    void constructGrid(const unsigned int res);
+
 private slots:
     void meshStatusChanged(Qt3DRender::QMesh::Status newStatus);
 signals:
