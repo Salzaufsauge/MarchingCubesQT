@@ -9,7 +9,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     in = new InputWidget(ui->inputLayout);
     out = new OutputWidget(ui->outputLayout);
-    connect( ui->loadButton,&QPushButton::clicked,this, &MainWindow::loadButtonSlot);
+    connect( ui->loadBtn,&QPushButton::clicked,this, &MainWindow::loadBtnSlot);
+    connect(in,&InputWidget::dataExtracted,this,&MainWindow::enableStartBtnSlot);
 }
 
 MainWindow::~MainWindow()
@@ -19,10 +20,14 @@ MainWindow::~MainWindow()
     delete out;
 }
 
-void MainWindow::loadButtonSlot()
+void MainWindow::loadBtnSlot()
 {
-    ui->startButton->setEnabled(false);
+    ui->startBtn->setEnabled(false);
     modelUrl = QUrl::fromLocalFile(QFileDialog::getOpenFileName(this,tr("Open Model"),"/home/",tr("Model files (*.obj)")));
     in->addMesh(modelUrl);
-    ui->startButton->setEnabled(true);
+}
+
+void MainWindow::enableStartBtnSlot()
+{
+    ui->startBtn->setEnabled(true);
 }

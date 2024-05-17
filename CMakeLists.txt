@@ -24,7 +24,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS
     3DExtras
 )
 # this is heuristically generated, and may not be correct
-    find_package(assimp CONFIG REQUIRED)
+    #find_package(assimp CONFIG REQUIRED)
 
 
 set(PROJECT_SOURCES
@@ -43,7 +43,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         inputwidget.hpp inputwidget.cpp
         outputwidget.hpp outputwidget.cpp
         .gitignore
-        vcpkg.json
+        #vcpkg.json
         scalarfield.h scalarfield.cpp
     )
 # Define target properties for Android with Qt 6 as:
@@ -71,7 +71,7 @@ target_link_libraries(MarchingCubesQT PRIVATE
     Qt${QT_VERSION_MAJOR}::3DInput
     Qt${QT_VERSION_MAJOR}::3DExtras
 )
-target_link_libraries(MarchingCubesQT PRIVATE assimp::assimp)
+#target_link_libraries(MarchingCubesQT PRIVATE assimp::assimp)
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.

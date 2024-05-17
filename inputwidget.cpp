@@ -7,6 +7,11 @@ InputWidget::InputWidget(QVBoxLayout *vboxLayout)
     connect(mesh,&Qt3DRender::QMesh::statusChanged,this,&InputWidget::meshStatusChanged);
 }
 
+InputWidget::~InputWidget()
+{
+    delete mesh;
+}
+
 void InputWidget::addMesh(QUrl url)
 {
     mesh->setSource(url);
@@ -16,13 +21,13 @@ void InputWidget::addMesh(QUrl url)
 void InputWidget::extractMeshData()
 {
     vertices.clear();
-    indexList.clear();
+    indices.clear();
     auto geometry = mesh->geometry();
     const auto attrList = geometry->attributes();
     uint byteStride = 0;
     uint byteOffset = 0;
     for(Qt3DCore::QAttribute* attr : attrList) {
-        if(attr->name() == Qt3DCore::QAttribute::defaultPositionAttributeName()) {
+        if(attr->name() == Qt3DCore::QAttribute::defaultPositionAttributeName()) {  //extract vertices
             QByteArray vertexData = attr->buffer()->data();
             byteStride = attr->byteStride() == 0 ? (3 * sizeof(float)) : attr->byteStride();
             byteOffset = attr->byteOffset();
@@ -35,16 +40,18 @@ void InputWidget::extractMeshData()
                 const float* fpos = reinterpret_cast<const float*>(vertexData.constData() + index);
                 vertices << QVector3D(fpos[0],fpos[1],fpos[2]);
             }
-        }else if(attr->attributeType() == Qt3DCore::QAttribute::IndexAttribute){
+        }else if(attr->attributeType() == Qt3DCore::QAttribute::IndexAttribute){    //extract indices
             QByteArray indexData = attr->buffer()->data();
 
-            const unsigned int* indices = reinterpret_cast<const unsigned int*>(indexData.constData());
+            const unsigned int* indexList = reinterpret_cast<const unsigned int*>(indexData.constData());
             uint indexCount = indexData.size() / sizeof(unsigned int);
             for(int i = 0; i < indexCount; ++i){
-                indexList << indices[i];
+                indices << indexList[i];
             }
         }
     }
+    if(!(vertices.isEmpty() && indices.isEmpty()))
+        emit dataExtracted();
 }
 
 void InputWidget::meshStatusChanged(Qt3DRender::QMesh::Status newStatus)

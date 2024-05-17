@@ -41,7 +41,7 @@ void Mc3DViewer::initCamera()
 
     light = new Qt3DRender::QPointLight(lightEntity);
     light->setColor("white");
-    light->setIntensity(1);
+    light->setIntensity(10);
     lightEntity->addComponent(light);
 
     lightTransform = new Qt3DCore::QTransform(lightEntity);

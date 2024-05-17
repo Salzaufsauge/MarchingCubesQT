@@ -34,5 +34,6 @@ private:
     ScalarField data;
 
 private slots:
-    void loadButtonSlot();
+    void loadBtnSlot();
+    void enableStartBtnSlot();
 };
