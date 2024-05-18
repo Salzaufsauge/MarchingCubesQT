@@ -10,7 +10,7 @@
 
 #include "inputwidget.hpp"
 #include "outputwidget.hpp"
-#include "scalarfield.h"
+#include "scalarfield.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,7 +21,6 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -36,4 +35,5 @@ private:
 private slots:
     void loadBtnSlot();
     void enableStartBtnSlot();
+    void startBtnSlot();
 };

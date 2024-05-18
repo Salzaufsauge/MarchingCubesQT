@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.28)
 
 project(MarchingCubesQT VERSION 0.1 LANGUAGES CXX)
 
@@ -23,28 +23,29 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS
     3DInput
     3DExtras
 )
-# this is heuristically generated, and may not be correct
-    #find_package(assimp CONFIG REQUIRED)
+find_package(Eigen3 CONFIG REQUIRED)
+
+
 
 
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.hpp
-        mainwindow.ui
+    main.cpp
+    mainwindow.cpp
+    mainwindow.hpp
+    mainwindow.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+
+
     qt_add_executable(MarchingCubesQT
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        README.md
         mc3dviewer.hpp mc3dviewer.cpp
         inputwidget.hpp inputwidget.cpp
         outputwidget.hpp outputwidget.cpp
-        .gitignore
-        #vcpkg.json
-        scalarfield.h scalarfield.cpp
+        scalarfield.hpp scalarfield.cpp
+        grid.hpp grid.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MarchingCubesQT APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -55,13 +56,13 @@ else()
         add_library(MarchingCubesQT SHARED
             ${PROJECT_SOURCES}
         )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-    else()
-        add_executable(MarchingCubesQT
-            ${PROJECT_SOURCES}
-        )
-    endif()
+    # Define properties for Android with Qt 5 after find_package() calls as:
+    #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
+else()
+    add_executable(MarchingCubesQT
+        ${PROJECT_SOURCES}
+    )
+endif()
 endif()
 
 target_link_libraries(MarchingCubesQT PRIVATE
@@ -71,12 +72,12 @@ target_link_libraries(MarchingCubesQT PRIVATE
     Qt${QT_VERSION_MAJOR}::3DInput
     Qt${QT_VERSION_MAJOR}::3DExtras
 )
-#target_link_libraries(MarchingCubesQT PRIVATE assimp::assimp)
+target_link_libraries(MarchingCubesQT PRIVATE Eigen3::Eigen)
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
 if(${QT_VERSION} VERSION_LESS 6.1.0)
-  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.MarchingCubesQT)
+    set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.MarchingCubesQT)
 endif()
 set_target_properties(MarchingCubesQT PROPERTIES
     ${BUNDLE_ID_OPTION}

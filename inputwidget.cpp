@@ -16,10 +16,12 @@ void InputWidget::addMesh(QUrl url)
 void InputWidget::extractMeshData()
 {
     vertices.clear();
+    vertices.squeeze();
     indices.clear();
+    indices.squeeze();
     auto geometry = mesh->geometry();
-    minExtend = QVector3D(std::numeric_limits<float>::max(),std::numeric_limits<float>::max(),std::numeric_limits<float>::max());
-    maxExtend = QVector3D(std::numeric_limits<float>::min(),std::numeric_limits<float>::min(),std::numeric_limits<float>::min());
+    minExtend = Vector3f(std::numeric_limits<float>::max(),std::numeric_limits<float>::max(),std::numeric_limits<float>::max());
+    maxExtend = Vector3f(std::numeric_limits<float>::min(),std::numeric_limits<float>::min(),std::numeric_limits<float>::min());
     const auto attrList = geometry->attributes();
     uint byteStride = 0;
     uint byteOffset = 0;
@@ -35,13 +37,13 @@ void InputWidget::extractMeshData()
                 int index = byteOffset + i * byteStride;
                 //x, y, z pos
                 const float* fpos = reinterpret_cast<const float*>(vertexData.constData() + index);
-                vertices << QVector3D(fpos[0],fpos[1],fpos[2]);
-                minExtend.setX(std::min(minExtend.x(),fpos[0]));
-                minExtend.setY(std::min(minExtend.y(),fpos[1]));
-                minExtend.setZ(std::min(minExtend.z(),fpos[2]));
-                maxExtend.setX(std::max(maxExtend.x(),fpos[0]));
-                maxExtend.setY(std::max(maxExtend.y(),fpos[1]));
-                maxExtend.setZ(std::max(maxExtend.z(),fpos[2]));
+                vertices << Vector3f(fpos[0],fpos[1],fpos[2]);
+                minExtend.x() = std::min(minExtend.x(),fpos[0]);
+                minExtend.y() = std::min(minExtend.y(),fpos[1]);
+                minExtend.z() = std::min(minExtend.z(),fpos[2]);
+                maxExtend.x() = std::max(maxExtend.x(),fpos[0]);
+                maxExtend.y() = std::max(maxExtend.y(),fpos[1]);
+                maxExtend.z() = std::max(maxExtend.z(),fpos[2]);
             }
         }else if(attr->attributeType() == Qt3DCore::QAttribute::IndexAttribute){    //extract indices
             QByteArray indexData = attr->buffer()->data();
@@ -77,7 +79,7 @@ void InputWidget::constructGrid(unsigned int res)
     if(!(mesh->status() == Qt3DRender::QMesh::Status::Ready)){
         qDebug() << "mesh not ready";
     }
-    grid.clear();
+    grid.resize();
     float lenX = maxExtend.x() - minExtend.x();
     float lenY = maxExtend.y() - minExtend.y();
     float lenZ = maxExtend.z() - minExtend.z();
@@ -100,7 +102,8 @@ void InputWidget::constructGrid(unsigned int res)
     deltaY = resY > 1 ? lenY / (float)(resY - 1) : 0;
     deltaZ = resZ > 1 ? lenZ / (float)(resZ - 1) : 0;
 
-    grid.reserve(resX*resY*resZ);
+    grid.resize(resX*resY*resZ);
+    grid.setRes(Vector3i(resX,resY,resZ));
 
     for(int i = 0;i < resX; ++i){
         for(int j = 0;j < resY; ++j){
@@ -108,18 +111,19 @@ void InputWidget::constructGrid(unsigned int res)
                 float x = minExtend.x() + deltaX * i;
                 float y = minExtend.y() + deltaY * j;
                 float z = minExtend.z() + deltaZ * k;
-                grid << QVector3D(x,y,z);
+                grid.appendPoint(Vector3f(x,y,z));
+                grid.appendSdf(std::numeric_limits<float>::infinity());
             }
         }
     }
 }
 
-const QList<QVector3D> &InputWidget::getGrid() const
+Grid &InputWidget::getGrid()
 {
     return grid;
 }
 
-const QList<QVector3D> &InputWidget::getVertices() const
+const QList<Vector3f> &InputWidget::getVertices() const
 {
     return vertices;
 }

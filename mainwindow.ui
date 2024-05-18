@@ -88,8 +88,11 @@
        </item>
        <item row="3" column="1">
         <widget class="QSlider" name="resolutionSlider">
-         <property name="maximum">
+         <property name="minimum">
           <number>4</number>
+         </property>
+         <property name="maximum">
+          <number>9</number>
          </property>
          <property name="singleStep">
           <number>1</number>

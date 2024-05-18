@@ -9,8 +9,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     in = new InputWidget(ui->inputLayout);
     out = new OutputWidget(ui->outputLayout);
+
     connect( ui->loadBtn,&QPushButton::clicked,this, &MainWindow::loadBtnSlot);
     connect(in,&InputWidget::dataExtracted,this,&MainWindow::enableStartBtnSlot);
+    connect(ui->startBtn,&QPushButton::clicked,this, &MainWindow::startBtnSlot);
 }
 
 MainWindow::~MainWindow()
@@ -30,4 +32,11 @@ void MainWindow::loadBtnSlot()
 void MainWindow::enableStartBtnSlot()
 {
     ui->startBtn->setEnabled(true);
+}
+
+void MainWindow::startBtnSlot()
+{
+    uint res = std::pow(2,ui->resolutionSlider->value());
+    in->constructGrid(res);
+    data.calculateSDF(in->getGrid(),in->getVertices(),in->getIndices());
 }

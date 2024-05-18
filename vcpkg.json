@@ -1,8 +1,8 @@
 {
-  "$schema" : "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
-  "name" : "mcpkg",
-  "version-string" : "0.0.1",
-  "dependencies" : [ "assimp", {
-    "name" : "assimp"
-  } ]
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "mypackage",
+  "version-string": "0.0.1",
+  "dependencies": [
+    "eigen3"
+  ]
 }

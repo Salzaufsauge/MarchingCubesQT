@@ -1,6 +1,7 @@
 #pragma once
 
 #include "mc3dviewer.hpp"
+#include "grid.hpp"
 
 class InputWidget : public Mc3DViewer
 {
@@ -9,17 +10,17 @@ public:
     InputWidget(QVBoxLayout *vboxLayout);
     void addMesh(QUrl url);
     void constructGrid(const uint res);
-    const QList<QVector3D> &getGrid() const;
-    const QList<QVector3D> &getVertices() const;
+    Grid &getGrid();
+    const QList<Vector3f> &getVertices() const;
     const QList<uint> &getIndices() const;
 
 private:
     Qt3DRender::QMesh *mesh;
-    QList<QVector3D> vertices;
+    QList<Vector3f> vertices;
     QList<uint> indices;
-    QList<QVector3D> grid;
-    QVector3D maxExtend;
-    QVector3D minExtend;
+    Grid grid;
+    Vector3f maxExtend;
+    Vector3f minExtend;
 
     void extractMeshData();
 
