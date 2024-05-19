@@ -22,10 +22,23 @@ MainWindow::~MainWindow()
     delete out;
 }
 
+void MainWindow::changeUIState()
+{
+    uiState = !uiState;
+    ui->startBtn->setEnabled(uiState);
+    ui->loadBtn->setEnabled(uiState);
+    ui->resolutionSlider->setEnabled(uiState);
+    ui->speedSlider->setEnabled(uiState);
+    ui->addonBox->setEnabled(uiState);
+}
+
 void MainWindow::loadBtnSlot()
 {
     ui->startBtn->setEnabled(false);
-    modelUrl = QUrl::fromLocalFile(QFileDialog::getOpenFileName(this,tr("Open Model"),"/home/",tr("Model files (*.obj)")));
+    modelUrl = QUrl::fromLocalFile(QFileDialog::getOpenFileName(this,
+                                                                tr("Open Model"),
+                                                                QStandardPaths::writableLocation(QStandardPaths::DownloadLocation),
+                                                                tr("Model files (*.obj)")));
     if(modelUrl.isEmpty()){
         qDebug() << "No model loaded";
         return;
@@ -41,6 +54,16 @@ void MainWindow::enableStartBtnSlot()
 void MainWindow::startBtnSlot()
 {
     uint res = std::pow(2,ui->resolutionSlider->value());
-    in->constructGrid(res);
-    data.calculateSDF(in->getGrid(),in->getVertices(),in->getIndices());
+    changeUIState();
+    QFuture<void> future = QtConcurrent::run([this, res]() {
+        in->constructGrid(res);
+        data.calculateSDF(in->getGrid(), in->getVertices(), in->getIndices());
+    });
+
+    QFutureWatcher<void> *watcher = new QFutureWatcher<void>(this);
+    connect(watcher, &QFutureWatcher<void>::finished, this, [watcher, this]() {
+        watcher->deleteLater();
+        changeUIState();
+    });
+    watcher->setFuture(future);
 }

@@ -26,11 +26,14 @@ public:
     ~MainWindow();
 
 private:
+    bool uiState = true;
+
     Ui::MainWindow *ui;
     QUrl modelUrl;
     InputWidget *in;
     OutputWidget *out;
     ScalarField data;
+    void changeUIState();
 
 private slots:
     void loadBtnSlot();

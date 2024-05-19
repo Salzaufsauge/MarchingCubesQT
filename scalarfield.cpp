@@ -6,13 +6,20 @@ ScalarField::ScalarField()
 
 void ScalarField::calculateSDF(Grid &grid, const QList<Vector3f> &vertices, const QList<uint> &indices)
 {
+    QMutex mut;
     generateTris(vertices, indices);
-    for(const auto &point : grid.getPoints()){
+    QElapsedTimer start;
+    start.start();
+    int bad = 0;
+    QFuture<void> future = QtConcurrent::map(grid.getPoints(), [&](const Vector3f &point) {
         bool inside = isPointInsideMesh(point);
-        //if(!inside) qDebug() << point.x() << point.y() << point.z() << "is outside";
-    }
-    qDebug() << "done";
-
+        if (!inside) {
+            QMutexLocker locker(&mut);
+            bad++;
+        }
+    });
+    future.waitForFinished();
+    qDebug() << start.elapsed() <<bad;
 }
 //Populates a list of tris
 void ScalarField::generateTris(const QList<Vector3f> &vertices, const QList<uint> &indices)
@@ -32,65 +39,44 @@ void ScalarField::generateTris(const QList<Vector3f> &vertices, const QList<uint
 
 bool ScalarField::isPointInsideMesh(const Vector3f &point)
 {
-    QList<int> intersections = {0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     QList<Vector3f> rays = {
         Vector3f(1.f, 0.f, 0.f),
-        Vector3f(0.f, 1.f, 0.f),
-        Vector3f(0.f, 0.f, 1.f),
+        // Vector3f(0.f, 1.f, 0.f),
+        // Vector3f(0.f, 0.f, 1.f),
         Vector3f(-1.f, 0.f, 0.f),
-        Vector3f(0.f, -1.f, 0.f),
-        Vector3f(0.f, 0.f, -1.f),
-        Vector3f(1.f, 1.f, 1.f),
-        Vector3f(-1.f, -1.f, -1.f),
-        Vector3f(1.f, -0.5f, 0.5f),
-        Vector3f(0.5f, 1.f, -0.5f),
-        Vector3f(-0.5f, -0.5f, 1.f),
-        Vector3f(-1.f, 0.5f, -0.5f),
-        Vector3f(0.5f, -1.f, -0.5f),
-        Vector3f(-0.5f, -0.5f, -1.f)
+        // Vector3f(0.f, -1.f, 0.f),
+        // Vector3f(0.f, 0.f, -1.f),
+        // Vector3f(1.f, 1.f, 1.f),
+        // Vector3f(-1.f, -1.f, -1.f),
+        // Vector3f(1.f, -0.5f, 0.5f),
+        // Vector3f(0.5f, 1.f, -0.5f),
+        // Vector3f(-0.5f, -0.5f, 1.f),
+        // Vector3f(-1.f, 0.5f, -0.5f),
+        // Vector3f(0.5f, -1.f, -0.5f),
+        // Vector3f(-0.5f, -0.5f, -1.f)
     };
     int rayCount = rays.count();
     int trisCount = tris.count();
 
-    std::atomic<bool> earlyExit(false);
+    QList<int> intersections(rayCount,0);
+
 #pragma omp parallel for
     for(int i = 0; i < rayCount; ++i){
-        if(earlyExit.load()) continue;
         QList<Vector3f> prevIntersect;
         for(int j = 0; j < trisCount; j++){
-            if(earlyExit.load()) break;
             bool r = mollerTromboreIntersect(point,rays[i],tris[j], prevIntersect);
             if(r) {
                 #pragma omp atomic update
                 intersections[i]++;
             }
-            if (intersections[i] % 2 != 1 && intersections[i] > 0){
-                earlyExit.store(true);
-                break;
-            }
         }
-        qDebug() << "ray " + std::to_string(i) + " done";
     }
-
-    if (earlyExit.load()) {
-        return false;
-    }
-
-    bool res = false;
-    for(int i = 0; i < rayCount; ++i){
-        if(intersections[i] % 2 == 1)
-            res = true;
-        else if(intersections[i] % 2 != 1 && intersections[i] > 0){
-            return false;
-        }
-
-    }
-    return res;
+    return checkIntersections(intersections,rayCount);
 }
 
 bool ScalarField::mollerTromboreIntersect(const Vector3f &point, const Vector3f &ray, const QList<Vector3f> &tri,  QList<Vector3f> &prevIntersect)
 {
-    constexpr float epsilon = 1e-3;
+    constexpr float epsilon = std::numeric_limits<float>::epsilon();
     if(tri.size() != 3) return false;
     Vector3f edge1 = tri[1] - tri[0];
     Vector3f edge2 = tri[2] - tri[0];
@@ -108,11 +94,27 @@ bool ScalarField::mollerTromboreIntersect(const Vector3f &point, const Vector3f 
     float t = f * edge2.dot(q);
     if (t > epsilon) {
         Vector3f uniqueIntersect = point + ray * t;
+        float epsilonSquared = epsilon * epsilon;
         for(auto prev : prevIntersect){
-            if((prev - uniqueIntersect).norm() < epsilon) return false;
+            if((prev - uniqueIntersect).squaredNorm() < epsilonSquared) return false;
         }
         prevIntersect << uniqueIntersect;
         return true;
     }
     else return false;
+}
+
+bool ScalarField::checkIntersections(const QList<int> &intersections, int rayCount)
+{
+    bool res = false;
+    for(int i = 0; i < rayCount; ++i){
+
+        if(intersections[i] % 2 == 1)
+            res = true;
+        else if(intersections[i] % 2 != 1 && intersections[i] > 0){
+            return false;
+        }
+
+    }
+    return res;
 }
