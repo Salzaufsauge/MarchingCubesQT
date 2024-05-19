@@ -26,6 +26,10 @@ void MainWindow::loadBtnSlot()
 {
     ui->startBtn->setEnabled(false);
     modelUrl = QUrl::fromLocalFile(QFileDialog::getOpenFileName(this,tr("Open Model"),"/home/",tr("Model files (*.obj)")));
+    if(modelUrl.isEmpty()){
+        qDebug() << "No model loaded";
+        return;
+    }
     in->addMesh(modelUrl);
 }
 

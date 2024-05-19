@@ -43,3 +43,6 @@ void Grid::resize(uint newSize)
     points.reserve(newSize);
     sdf.reserve(newSize);
 }
+
+
+

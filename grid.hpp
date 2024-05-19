@@ -20,8 +20,12 @@ public:
 
     void resize(uint newSize = 0);
 
+    QList<bool> getInside() const;
+    void setInside(const QList<bool> &newInside);
+
 private:
     QList<Vector3f> points;
     QList<float> sdf;
     Vector3i res;
+
 };
