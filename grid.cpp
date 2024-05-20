@@ -17,9 +17,10 @@ const QList<float> &Grid::getSdf() const
     return sdf;
 }
 
-void Grid::appendSdf(const float &newSdf)
+void Grid::setSdfAt(int index,const float &newVal)
 {
-    sdf << newSdf;
+#pragma omp atomic write
+    sdf[index] = newVal;
 }
 
 const Vector3i Grid::getRes() const
@@ -34,14 +35,11 @@ void Grid::setRes(const Vector3i &newRes)
 
 void Grid::resize(uint newSize)
 {
-    points.clear();
     sdf.clear();
-    if(newSize < points.capacity()){
-        points.squeeze();
-        sdf.squeeze();
-    }
-    points.reserve(newSize);
-    sdf.reserve(newSize);
+    points.resize(newSize);
+    points.clear();
+    sdf.resize(newSize);
+
 }
 
 

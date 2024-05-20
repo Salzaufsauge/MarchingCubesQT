@@ -6,20 +6,15 @@ ScalarField::ScalarField()
 
 void ScalarField::calculateSDF(Grid &grid, const QList<Vector3f> &vertices, const QList<uint> &indices)
 {
-    QMutex mut;
     generateTris(vertices, indices);
-    QElapsedTimer start;
-    start.start();
-    int bad = 0;
-    QFuture<void> future = QtConcurrent::map(grid.getPoints(), [&](const Vector3f &point) {
-        bool inside = isPointInsideMesh(point);
-        if (!inside) {
-            QMutexLocker locker(&mut);
-            bad++;
-        }
-    });
-    future.waitForFinished();
-    qDebug() << start.elapsed() <<bad;
+    const QList<Vector3f> &pointList = grid.getPoints();
+    int pointCount = pointList.count();
+#pragma omp parallel for
+    for (int i = 0; i < pointCount; ++i){
+        bool inside = isPointInsideMesh(pointList[i]);
+        float dist = minPointToTriDist(pointList[i]);
+        grid.setSdfAt(i, inside ? -dist : dist);
+    }
 }
 //Populates a list of tris
 void ScalarField::generateTris(const QList<Vector3f> &vertices, const QList<uint> &indices)
@@ -39,22 +34,6 @@ void ScalarField::generateTris(const QList<Vector3f> &vertices, const QList<uint
 
 bool ScalarField::isPointInsideMesh(const Vector3f &point)
 {
-    QList<Vector3f> rays = {
-        Vector3f(1.f, 0.f, 0.f),
-        // Vector3f(0.f, 1.f, 0.f),
-        // Vector3f(0.f, 0.f, 1.f),
-        Vector3f(-1.f, 0.f, 0.f),
-        // Vector3f(0.f, -1.f, 0.f),
-        // Vector3f(0.f, 0.f, -1.f),
-        // Vector3f(1.f, 1.f, 1.f),
-        // Vector3f(-1.f, -1.f, -1.f),
-        // Vector3f(1.f, -0.5f, 0.5f),
-        // Vector3f(0.5f, 1.f, -0.5f),
-        // Vector3f(-0.5f, -0.5f, 1.f),
-        // Vector3f(-1.f, 0.5f, -0.5f),
-        // Vector3f(0.5f, -1.f, -0.5f),
-        // Vector3f(-0.5f, -0.5f, -1.f)
-    };
     int rayCount = rays.count();
     int trisCount = tris.count();
 
@@ -66,7 +45,7 @@ bool ScalarField::isPointInsideMesh(const Vector3f &point)
         for(int j = 0; j < trisCount; j++){
             bool r = mollerTromboreIntersect(point,rays[i],tris[j], prevIntersect);
             if(r) {
-                #pragma omp atomic update
+#pragma omp atomic update
                 intersections[i]++;
             }
         }
@@ -117,4 +96,36 @@ bool ScalarField::checkIntersections(const QList<int> &intersections, int rayCou
 
     }
     return res;
+}
+
+float ScalarField::minPointToTriDist(const Vector3f &point)
+{
+    float minDistance = std::numeric_limits<float>::infinity();
+    for(const auto &tri : tris){
+        float dist = pointToTriDist(point, tri);
+        minDistance = minDistance < dist ? minDistance : dist;
+    }
+    return std::abs(minDistance);
+}
+
+float ScalarField::pointToTriDist(const Vector3f &point, const QList<Vector3f> &tri)
+{
+    Vector3f edgeBA = tri[1] - tri[0];
+    Vector3f edgeCA = tri[2] - tri[0];
+    Vector3f n = edgeBA.cross(edgeCA);
+    Vector3f pa = point - tri[0];
+    float distance = abs(pa.dot(n)/ n.norm());
+    Vector3f edgeAB = tri[0] - tri[1];
+    Vector3f edgeAC = tri[0] - tri[2];
+    Vector3f ap = tri[0] - point;
+    float denom = (edgeAB.cross(edgeAC)).norm();
+    float u = (edgeAB.cross(ap)).norm() / denom;
+    float v = (edgeAC.cross(ap)).norm() / denom;
+    float w = 1 - u - v;
+    if (u >= 0 && v >= 0 && w >= 0)
+        return distance;
+    float minEdgeDist = std::min(ap.cross(edgeBA).norm() / edgeBA.norm(),
+                                 std::min((point - tri[1]).cross(tri[2]-tri[1]).norm() / (tri[2] - tri[1]).norm(),
+                                          (point - tri[2]).cross(edgeAC).norm() / edgeAC.norm()));
+    return minEdgeDist;
 }

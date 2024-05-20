@@ -79,7 +79,6 @@ void InputWidget::constructGrid(unsigned int res)
     if(!(mesh->status() == Qt3DRender::QMesh::Status::Ready)){
         qDebug() << "mesh not ready";
     }
-    grid.resize();
     float lenX = maxExtend.x() - minExtend.x();
     float lenY = maxExtend.y() - minExtend.y();
     float lenZ = maxExtend.z() - minExtend.z();
@@ -112,7 +111,6 @@ void InputWidget::constructGrid(unsigned int res)
                 float y = minExtend.y() + deltaY * j;
                 float z = minExtend.z() + deltaZ * k;
                 grid.appendPoint(Vector3f(x,y,z));
-                grid.appendSdf(std::numeric_limits<float>::infinity());
             }
         }
     }

@@ -24,6 +24,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS
     3DExtras
 )
 find_package(Eigen3 CONFIG REQUIRED)
+find_package(OpenMP)
 
 
 
@@ -73,6 +74,9 @@ target_link_libraries(MarchingCubesQT PRIVATE
     Qt${QT_VERSION_MAJOR}::3DExtras
 )
 target_link_libraries(MarchingCubesQT PRIVATE Eigen3::Eigen)
+if(OpenMP_CXX_FOUND)
+    target_link_libraries(MarchingCubesQT PUBLIC OpenMP::OpenMP_CXX)
+endif()
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
