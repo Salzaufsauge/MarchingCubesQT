@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     out = new OutputWidget(ui->outputLayout);
 
     connect( ui->loadBtn,&QPushButton::clicked,this, &MainWindow::loadBtnSlot);
-    connect(in,&InputWidget::dataExtracted,this,&MainWindow::enableStartBtnSlot);
+    connect(in->getMesh(),&Mesh::dataExtracted,this,&MainWindow::enableStartBtnSlot);
     connect(ui->startBtn,&QPushButton::clicked,this, &MainWindow::startBtnSlot);
 }
 
@@ -57,7 +57,7 @@ void MainWindow::startBtnSlot()
     changeUIState();
     QFuture<void> future = QtConcurrent::run([this, res]() {
         in->constructGrid(res);
-        data.calculateSDF(in->getGrid(), in->getVertices(), in->getIndices());
+        data.calculateSDF(in->getGrid(), in->getMesh()->getVertices(), in->getMesh()->getIndices());
     });
 
     QFutureWatcher<void> *watcher = new QFutureWatcher<void>(this);

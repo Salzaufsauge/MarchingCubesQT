@@ -1,5 +1,6 @@
 #pragma once
 
+#include "mesh.hpp"
 #include <QObject>
 #include <QtWidgets>
 #include <QtCore>
@@ -14,6 +15,7 @@ class Mc3DViewer : public QWidget
 public:
     Mc3DViewer(QVBoxLayout *vboxLayout, QWidget* parent = nullptr);
     ~Mc3DViewer();
+    Mesh *getMesh() const;
 private:
     void initCamera();
 protected:
@@ -27,4 +29,5 @@ protected:
     Qt3DRender::QPointLight *light;
     Qt3DCore::QTransform *lightTransform;
     Qt3DExtras::QFirstPersonCameraController *camController;
+    Mesh *mesh;
 };

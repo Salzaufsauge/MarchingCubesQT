@@ -11,6 +11,7 @@
 #include "inputwidget.hpp"
 #include "outputwidget.hpp"
 #include "scalarfield.hpp"
+#include "marchingcubes.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

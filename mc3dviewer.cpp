@@ -15,6 +15,8 @@ Mc3DViewer::Mc3DViewer(QVBoxLayout *vboxLayout,QWidget* parent)
     initCamera();
     objectEntity = new Qt3DCore::QEntity(rootEntity);
 
+    mesh = new Mesh(objectEntity);
+
     material = new Qt3DExtras::QGoochMaterial;
     material->setDiffuse(Qt::red);
     objectEntity->addComponent(material);
@@ -50,4 +52,9 @@ void Mc3DViewer::initCamera()
 
     camController = new Qt3DExtras::QFirstPersonCameraController(rootEntity);
     camController->setCamera(inputCam);
+}
+
+Mesh *Mc3DViewer::getMesh() const
+{
+    return mesh;
 }

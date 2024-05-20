@@ -6,3 +6,9 @@ OutputWidget::OutputWidget(QVBoxLayout *vboxLayout)
 
 }
 
+void OutputWidget::buildMesh(const QList<Vector3f> &vertices, const QList<uint> &indices)
+{
+    mesh->buildMesh(vertices, indices);
+    objectEntity->addComponent(mesh);
+}
+
