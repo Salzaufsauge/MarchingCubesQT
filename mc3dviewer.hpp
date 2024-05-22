@@ -22,7 +22,7 @@ protected:
     QWidget *widget;
     Qt3DCore::QEntity *rootEntity;
     Qt3DCore::QEntity *objectEntity;
-    Qt3DExtras::QGoochMaterial *material;
+    Qt3DExtras::QPhongMaterial *material;
     Qt3DExtras::Qt3DWindow *view;
     Qt3DRender::QCamera *inputCam;
     Qt3DCore::QEntity *lightEntity;

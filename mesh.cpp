@@ -159,9 +159,11 @@ void Mesh::buildMesh(const QList<Vector3f> &vertices, const QList<uint> &indices
 
 void Mesh::calculateVertexNormals(const QList<Vector3f> &vertices, const QList<uint> &indices, QList<Vector3f> &normals)
 {
+
     normals.resize(vertices.size(), Vector3f(0.0f, 0.0f, 0.0f));
 
     for (int i = 0; i < indices.size(); i += 3) {
+
         uint idx1 = indices[i];
         uint idx2 = indices[i + 1];
         uint idx3 = indices[i + 2];
@@ -169,12 +171,11 @@ void Mesh::calculateVertexNormals(const QList<Vector3f> &vertices, const QList<u
         Vector3f v1 = vertices[idx1];
         Vector3f v2 = vertices[idx2];
         Vector3f v3 = vertices[idx3];
-
         Vector3f faceNormal = (v2 - v1).cross(v3 - v1).normalized();
 
-        normals[idx1] += faceNormal;
-        normals[idx2] += faceNormal;
-        normals[idx3] += faceNormal;
+        normals += faceNormal;
+        normals += faceNormal;
+        normals += faceNormal;
     }
 
     for (int i = 0; i < normals.size(); ++i) {

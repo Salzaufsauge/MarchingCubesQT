@@ -14,6 +14,7 @@ class ScalarField
 public:
     ScalarField();
     void calculateSDF(Grid &grid,const QList<Vector3f> &vertices,const QList<uint> &indices);
+    float sdTorus(const Vector3f& p, const Vector2f& t);
 private:
     QList<QList<Vector3f>> tris;
     QList<Vector3f> rays = {
@@ -39,5 +40,6 @@ private:
     bool checkIntersections(const QList<int> &intersections, int rayCount);
     float minPointToTriDist(const Vector3f &point);
     float pointToTriDist(const Vector3f &point, const QList<Vector3f> &tri);
+
 };
 

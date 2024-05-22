@@ -6,7 +6,7 @@ ScalarField::ScalarField()
         Vector3f(1.f, 0.f, 0.f),
         // Vector3f(0.f, 1.f, 0.f),
         // Vector3f(0.f, 0.f, 1.f),
-        Vector3f(-1.f, 0.f, 0.f),
+        // Vector3f(-1.f, 0.f, 0.f),
         // Vector3f(0.f, -1.f, 0.f),
         // Vector3f(0.f, 0.f, -1.f),
         // Vector3f(1.f, 1.f, 1.f),
@@ -23,13 +23,19 @@ ScalarField::ScalarField()
 void ScalarField::calculateSDF(Grid &grid, const QList<Vector3f> &vertices, const QList<uint> &indices)
 {
     generateTris(vertices, indices);
-    const QList<Vector3f> &pointList = grid.getPoints();
-    int pointCount = pointList.count();
+    const QList<QList<QList<Vector3f>>> &pointList = grid.getPoints();
+    int x = grid.getRes().x();
+    int y = grid.getRes().y();
+    int z = grid.getRes().z();
 #pragma omp parallel for
-    for (int i = 0; i < pointCount; ++i){
-        bool inside = isPointInsideMesh(pointList[i]);
-        float dist = minPointToTriDist(pointList[i]);
-        grid.setSdfAt(i, inside ? -dist : dist);
+    for (int i = 0; i < x; ++i){
+        for(int j = 0; j < y; ++j){
+            for(int k = 0; k < z; ++k){
+                bool inside = isPointInsideMesh(pointList[i][j][k]);
+                float dist = minPointToTriDist(pointList[i][j][k]);
+                grid.setSdfAt(i,j,k, inside ? -dist : dist);
+            }
+        }
     }
 }
 //Populates a list of tris
@@ -144,4 +150,9 @@ float ScalarField::pointToTriDist(const Vector3f &point, const QList<Vector3f> &
                                  std::min((point - tri[1]).cross(tri[2]-tri[1]).norm() / (tri[2] - tri[1]).norm(),
                                           (point - tri[2]).cross(edgeAC).norm() / edgeAC.norm()));
     return minEdgeDist;
+}
+
+float ScalarField::sdTorus(const Vector3f& p, const Vector2f& t) {
+    Vector2f q(p.head<2>().norm() - t.x(), p.y());
+    return q.norm() - t.y();
 }

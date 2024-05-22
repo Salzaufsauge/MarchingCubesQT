@@ -9,19 +9,32 @@ class Grid
 {
 public:
     Grid();
-    const QList<Vector3f> &getPoints() const;
+    const QList<QList<QList<Vector3f>>> &getPoints() const;
     void appendPoint(const Vector3f &newPoint);
 
-    const QList<float> &getSdf() const;
-    void setSdfAt(int index,const float &newSdfVal);
+    const QList<QList<QList<float>>> &getSdf() const;
+    void setSdfAt(int x, int y, int z,const float &newSdfVal);
 
     const Vector3i getRes() const;
     void setRes(const Vector3i &newRes);
 
-    void resize(uint newSize = 0);
+    void resize(Vector3i newRes);
+
+    void constructGrid(const uint res,const Vector3f &maxExtendMesh,const Vector3f &minExtendMesh);
+
+    float getDeltaX() const;
+
+    float getDeltaY() const;
+
+    float getDeltaZ() const;
 
 private:
-    QList<Vector3f> points;
-    QList<float> sdf;
+    QList<QList<QList<Vector3f>>> points;
+    QList<QList<QList<float>>> sdf;
+    Vector3f minExtend;
+    Vector3f maxExtend;
     Vector3i res;
+    float deltaX;
+    float deltaY;
+    float deltaZ;
 };

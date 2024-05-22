@@ -11,7 +11,6 @@
 #include "inputwidget.hpp"
 #include "outputwidget.hpp"
 #include "scalarfield.hpp"
-#include "marchingcubes.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -35,6 +34,8 @@ private:
     OutputWidget *out;
     ScalarField data;
     void changeUIState();
+    QList<Vector3f> vertices;
+    QList<uint> indices;
 
 private slots:
     void loadBtnSlot();

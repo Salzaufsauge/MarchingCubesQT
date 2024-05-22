@@ -1,5 +1,6 @@
 #include "mainwindow.hpp"
 #include "./ui_mainwindow.h"
+#include "marchingcubes.hpp"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -55,15 +56,28 @@ void MainWindow::startBtnSlot()
 {
     uint res = std::pow(2,ui->resolutionSlider->value());
     changeUIState();
+    vertices.clear();
+    indices.clear();
+    vertices.squeeze();
+    indices.squeeze();
     QFuture<void> future = QtConcurrent::run([this, res]() {
-        in->constructGrid(res);
-        data.calculateSDF(in->getGrid(), in->getMesh()->getVertices(), in->getMesh()->getIndices());
+        Grid grid;
+        grid.constructGrid(res,in->getMesh()->getMaxExtend(),in->getMesh()->getMinExtend());
+// #pragma omp parallel for
+//         for(auto i = 0; i < grid.getRes().x();++i)
+//             for(auto j = 0; j < grid.getRes().y();++j)
+//                 for(auto k = 0; k < grid.getRes().z();++k)
+//                     grid.setSdfAt(i,j,k,data.sdTorus(grid.getPoints()[i][j][k],Vector2f(0.5, 0.5)));
+        data.calculateSDF(grid, in->getMesh()->getVertices(), in->getMesh()->getIndices());
+        MarchingCubes mCubes;
+        mCubes.mc(grid,0,vertices,indices);
     });
 
     QFutureWatcher<void> *watcher = new QFutureWatcher<void>(this);
     connect(watcher, &QFutureWatcher<void>::finished, this, [watcher, this]() {
         watcher->deleteLater();
         changeUIState();
+        out->buildMesh(vertices,indices);
     });
     watcher->setFuture(future);
 }
