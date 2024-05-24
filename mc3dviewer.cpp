@@ -17,7 +17,7 @@ Mc3DViewer::Mc3DViewer(QVBoxLayout *vboxLayout,QWidget* parent)
 
     mesh = new Mesh(objectEntity);
 
-    material = new Qt3DExtras::QPhongMaterial;
+    material = new Qt3DExtras::QGoochMaterial(objectEntity);
     material->setDiffuse(Qt::red);
     objectEntity->addComponent(material);
 

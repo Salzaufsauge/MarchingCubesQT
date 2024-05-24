@@ -36,14 +36,6 @@ void MarchingCubes::generateGridCells(const Grid &grid)
                     cell.vertices[5] = grid.getPoints()[i+1][j+1][k+1];
                     cell.vertices[6] = grid.getPoints()[i+1][j][k+1];
                     cell.vertices[7] = grid.getPoints()[i][j][k+1];
-                    // cell.vertices[0] = grid.getPoints()[i][j][k];
-                    // cell.vertices[1] = grid.getPoints()[i+1][j][k];
-                    // cell.vertices[2] = grid.getPoints()[i+1][j][k+1];
-                    // cell.vertices[3] = grid.getPoints()[i][j][k+1];
-                    // cell.vertices[4] = grid.getPoints()[i][j+1][k];
-                    // cell.vertices[5] = grid.getPoints()[i+1][j+1][k];
-                    // cell.vertices[6] = grid.getPoints()[i+1][j+1][k+1];
-                    // cell.vertices[7] = grid.getPoints()[i][j+1][k+1];
 
                     cell.val[0] = grid.getSdf()[i][j+1][k];
                     cell.val[1] = grid.getSdf()[i+1][j+1][k];
@@ -53,15 +45,6 @@ void MarchingCubes::generateGridCells(const Grid &grid)
                     cell.val[5] = grid.getSdf()[i+1][j+1][k+1];
                     cell.val[6] = grid.getSdf()[i+1][j][k+1];
                     cell.val[7] = grid.getSdf()[i][j][k+1];
-
-                    // cell.val[0] = grid.getSdf()[i][j][k];
-                    // cell.val[1] = grid.getSdf()[i+1][j][k];
-                    // cell.val[2] = grid.getSdf()[i+1][j][k+1];
-                    // cell.val[3] = grid.getSdf()[i][j][k+1];
-                    // cell.val[4] = grid.getSdf()[i][j+1][k];
-                    // cell.val[5] = grid.getSdf()[i+1][j+1][k];
-                    // cell.val[6] = grid.getSdf()[i+1][j+1][k+1];
-                    // cell.val[7] = grid.getSdf()[i][j+1][k+1];
 
                     threadGridCells.push_back(std::move(cell));
                 }

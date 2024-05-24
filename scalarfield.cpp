@@ -4,19 +4,19 @@ ScalarField::ScalarField()
 {
     rays = QList<Vector3f>{
         Vector3f(1.f, 0.f, 0.f),
-        // Vector3f(0.f, 1.f, 0.f),
-        // Vector3f(0.f, 0.f, 1.f),
-        // Vector3f(-1.f, 0.f, 0.f),
-        // Vector3f(0.f, -1.f, 0.f),
-        // Vector3f(0.f, 0.f, -1.f),
-        // Vector3f(1.f, 1.f, 1.f),
-        // Vector3f(-1.f, -1.f, -1.f),
-        // Vector3f(1.f, -0.5f, 0.5f),
-        // Vector3f(0.5f, 1.f, -0.5f),
-        // Vector3f(-0.5f, -0.5f, 1.f),
-        // Vector3f(-1.f, 0.5f, -0.5f),
-        // Vector3f(0.5f, -1.f, -0.5f),
-        // Vector3f(-0.5f, -0.5f, -1.f)
+        Vector3f(0.f, 1.f, 0.f),
+        Vector3f(0.f, 0.f, 1.f),
+        Vector3f(-1.f, 0.f, 0.f),
+        Vector3f(0.f, -1.f, 0.f),
+        Vector3f(0.f, 0.f, -1.f),
+        Vector3f(1.f, 1.f, 1.f),
+        Vector3f(-1.f, -1.f, -1.f),
+        Vector3f(1.f, -0.5f, 0.5f),
+        Vector3f(0.5f, 1.f, -0.5f),
+        Vector3f(-0.5f, -0.5f, 1.f),
+        Vector3f(-1.f, 0.5f, -0.5f),
+        Vector3f(0.5f, -1.f, -0.5f),
+        Vector3f(-0.5f, -0.5f, -1.f)
     };
 }
 

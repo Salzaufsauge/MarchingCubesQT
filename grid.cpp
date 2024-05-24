@@ -65,9 +65,9 @@ void Grid::constructGrid(const uint res,const Vector3f &maxExtendMesh,const Vect
     resY = std::max(1,resY);
     resZ = std::max(1,resZ);
 
-    deltaX = resX > 1 ? lenX / (float)(resX - 1) : 0;
-    deltaY = resY > 1 ? lenY / (float)(resY - 1) : 0;
-    deltaZ = resZ > 1 ? lenZ / (float)(resZ - 1) : 0;
+    deltaX = resX > 1 ? lenX / static_cast<float>(resX - 1) : 0;
+    deltaY = resY > 1 ? lenY / static_cast<float>(resY - 1) : 0;
+    deltaZ = resZ > 1 ? lenZ / static_cast<float>(resZ - 1) : 0;
 
     resize(Vector3i(resX,resY,resZ));
 

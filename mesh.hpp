@@ -18,9 +18,12 @@ public:
     Vector3f getMinExtend() const;
     void buildMesh(const QList<Vector3f> &vertices, const QList<uint> &indices);
 
+    const QList<Vector3f> &getNormals() const;
+
 private:
     QList<Vector3f> vertices;
     QList<uint> indices;
+    QList<Vector3f> normals;
     Vector3f maxExtend;
     Vector3f minExtend;
 
