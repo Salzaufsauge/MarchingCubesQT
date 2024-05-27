@@ -14,7 +14,7 @@ class MarchingCubes
 {
 public:
     MarchingCubes();
-    void mc(const Grid &grid,float isolevel, QList<Vector3f> &vertices, QList<uint> &indices);
+    void mc(const Grid &grid,float isolevel, QList<Vector3f> &vertices, QList<uint> &indices, int &speed);
 
 private:
     void generateGridCells(const Grid &grid);

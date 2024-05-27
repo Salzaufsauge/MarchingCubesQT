@@ -7,10 +7,12 @@
 #include <Qt3DRender/Qt3DRender>
 #include <Qt3DInput/Qt3DInput>
 #include <Qt3DExtras/Qt3DExtras>
+#include <memory>
 
 #include "inputwidget.hpp"
 #include "outputwidget.hpp"
 #include "scalarfield.hpp"
+#include "marchingcontroller.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -26,19 +28,28 @@ public:
     ~MainWindow();
 
 private:
-    bool uiState = true;
+    std::unique_ptr<Grid> grid;
 
     Ui::MainWindow *ui;
     QUrl modelUrl;
     InputWidget *in;
     OutputWidget *out;
     ScalarField data;
-    void changeUIState();
+    void disableUi();
+    void uiModelLoaded();
+    void uiSFLoaded();
     QList<Vector3f> vertices;
     QList<uint> indices;
+    MarchingController *marchingController;
+    MarchingFlags getSelectedFlag();
+    int getFlags();
+
 
 private slots:
     void loadBtnSlot();
-    void enableStartBtnSlot();
-    void startBtnSlot();
+    void modelLoadedSlot();
+    void sfBtnSlot();
+    void resChangedSlot();
+    void polyBtnSlot();
+    void speedSliderSlot();
 };

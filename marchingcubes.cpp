@@ -2,13 +2,14 @@
 
 MarchingCubes::MarchingCubes() {}
 
-void MarchingCubes::mc(const Grid &grid, float isolevel, QList<Vector3f> &vertices, QList<uint> &indices)
+void MarchingCubes::mc(const Grid &grid, float isolevel, QList<Vector3f> &vertices, QList<uint> &indices, int &speed)
 {
     generateGridCells(grid);
 
 #pragma omp parallel for
     for(auto &cell : gridCells){
         polygonise(cell,isolevel,vertices,indices);
+        QThread::msleep(speed);
     }
 }
 

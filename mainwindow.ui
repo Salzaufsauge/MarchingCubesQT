@@ -30,46 +30,80 @@
        <string>Controlls</string>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0" colspan="2">
-        <widget class="QPushButton" name="startBtn">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
+       <item row="2" column="1" colspan="3">
+        <widget class="QPushButton" name="polyBtn">
          <property name="text">
-          <string>Start</string>
-         </property>
-         <property name="checkable">
-          <bool>false</bool>
-         </property>
-         <property name="checked">
-          <bool>false</bool>
+          <string>Calculate Polygons</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0" colspan="2">
-        <widget class="QPushButton" name="loadBtn">
-         <property name="text">
-          <string>Load Model</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
+       <item row="6" column="1">
         <widget class="QLabel" name="speedLabel">
          <property name="text">
           <string>Speed</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
+       <item row="8" column="3">
+        <widget class="QGroupBox" name="addonBox">
+         <property name="title">
+          <string>Addons</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="1" column="0">
+           <widget class="QRadioButton" name="dualRadioBtn">
+            <property name="text">
+             <string>Dual Marching</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QRadioButton" name="mtRadioBtn">
+            <property name="text">
+             <string>Marching Tetrahedron</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QCheckBox" name="smoothBox">
+            <property name="text">
+             <string>Smooth</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QRadioButton" name="mcRadioBtn">
+            <property name="text">
+             <string>Marching Cubes</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QLabel" name="resolutionLabel">
+         <property name="text">
+          <string>Resolution</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="3">
         <widget class="QSlider" name="speedSlider">
          <property name="minimum">
-          <number>50</number>
+          <number>500</number>
          </property>
          <property name="maximum">
-          <number>100</number>
+          <number>1000</number>
          </property>
          <property name="sliderPosition">
-          <number>100</number>
+          <number>1000</number>
          </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -79,14 +113,7 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="resolutionLabel">
-         <property name="text">
-          <string>Resolution</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
+       <item row="7" column="3">
         <widget class="QSlider" name="resolutionSlider">
          <property name="minimum">
           <number>4</number>
@@ -114,34 +141,50 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
-        <widget class="QGroupBox" name="addonBox">
-         <property name="title">
-          <string>Addons</string>
+       <item row="3" column="1" colspan="3">
+        <widget class="QPushButton" name="loadBtn">
+         <property name="text">
+          <string>Load Model</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
-           <widget class="QCheckBox" name="checkBox">
-            <property name="text">
-             <string>CheckBox</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="checkBox_2">
-            <property name="text">
-             <string>CheckBox</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="checkBox_3">
-            <property name="text">
-             <string>CheckBox</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLabel" name="statusLabel">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Status</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" colspan="3">
+        <widget class="QPushButton" name="sfBtn">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Calculate Scalar Field</string>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2" colspan="2">
+        <widget class="QLineEdit" name="statusEdit">
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
       </layout>

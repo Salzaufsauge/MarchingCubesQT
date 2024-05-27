@@ -12,3 +12,9 @@ void OutputWidget::buildMesh(const QList<Vector3f> &vertices, const QList<uint> 
     objectEntity->addComponent(mesh);
 }
 
+void OutputWidget::clearMesh()
+{
+    if(!objectEntity->componentsOfType<Mesh>().isEmpty())
+        objectEntity->removeComponent(mesh);
+}
+

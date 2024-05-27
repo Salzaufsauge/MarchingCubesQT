@@ -28,6 +28,7 @@ Mc3DViewer::~Mc3DViewer()
 {
     delete rootEntity;
     delete view;
+    //delete mesh;
 }
 
 void Mc3DViewer::initCamera()
