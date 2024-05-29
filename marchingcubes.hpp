@@ -10,10 +10,11 @@ struct GridCell{
     std::array<float,8> val;
 };
 
-class MarchingCubes
+class MarchingCubes : public QObject
 {
+    Q_OBJECT
 public:
-    MarchingCubes();
+    MarchingCubes(QObject *parent = nullptr);
     void mc(const Grid &grid,float isolevel, QList<Vector3f> &vertices, QList<uint> &indices, int &speed);
 
 private:
@@ -314,4 +315,6 @@ private:
             {{0, 3, 8, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}},
             {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}}
         }};
+signals:
+    void newData(QList<Vector3f> previewVertices, QList<uint> previewIndices);
 };

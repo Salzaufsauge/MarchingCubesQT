@@ -20,6 +20,8 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+Q_DECLARE_METATYPE(QList<Eigen::Vector3f>);
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -52,4 +54,5 @@ private slots:
     void resChangedSlot();
     void polyBtnSlot();
     void speedSliderSlot();
+    void previewSlot(QList<Vector3f> vertices, QList<uint> indices);
 };

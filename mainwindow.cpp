@@ -26,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->polyBtn, &QPushButton::clicked,this,&MainWindow::polyBtnSlot);
     connect(ui->resolutionSlider, &QSlider::valueChanged,this,&MainWindow::resChangedSlot);
     connect(ui->speedSlider, &QSlider::valueChanged,this,&MainWindow::speedSliderSlot);
+    connect(marchingController,&MarchingController::newData,this,&MainWindow::previewSlot);
 }
 
 MainWindow::~MainWindow()
@@ -175,6 +176,7 @@ void MainWindow::polyBtnSlot()
     QFutureWatcher<void> *watcher = new QFutureWatcher<void>(this);
     connect(watcher, &QFutureWatcher<void>::finished, this, [watcher, this]() {
         watcher->deleteLater();
+        out->clearPreview();
         ui->statusEdit->setText("building mesh");
         out->buildMesh(vertices,indices);
         uiSFLoaded();
@@ -185,4 +187,10 @@ void MainWindow::polyBtnSlot()
 void MainWindow::speedSliderSlot()
 {
     marchingController->setSpeed(1000 - (ui->speedSlider->value()));
+}
+
+void MainWindow::previewSlot(QList<Vector3f> previewVertices, QList<uint> previewIndices)
+{
+    if(marchingController->getRunning())
+        out->buildPreviewMesh(previewVertices,previewIndices);
 }

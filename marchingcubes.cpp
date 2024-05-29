@@ -1,15 +1,23 @@
 #include "marchingcubes.hpp"
 
-MarchingCubes::MarchingCubes() {}
+MarchingCubes::MarchingCubes(QObject *parent)
+    : QObject{parent}
+{}
 
 void MarchingCubes::mc(const Grid &grid, float isolevel, QList<Vector3f> &vertices, QList<uint> &indices, int &speed)
 {
     generateGridCells(grid);
-
+    int i = 0;
 #pragma omp parallel for
     for(auto &cell : gridCells){
         polygonise(cell,isolevel,vertices,indices);
-        QThread::msleep(speed);
+        if(speed != 0){
+            QThread::msleep(speed);
+#pragma omp atomic update
+            i++;
+#pragma omp critical(triTable)
+            if(i % 25 == 0) emit newData(vertices,indices);
+        }
     }
 }
 
