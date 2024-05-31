@@ -3,10 +3,8 @@
 #include <Eigen/Dense>
 #include <QtCore>
 
-class BVHNode
+struct BVHNode
 {
-public:
-    BVHNode();
     Eigen::Vector3f aabbMin, aabbMax;
     uint leftChild, rightChild;
     bool isLeaf;

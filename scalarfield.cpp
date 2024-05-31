@@ -45,11 +45,11 @@ void ScalarField::generateTris(const QList<Vector3f> &vertices, const QList<uint
     tris.squeeze();
     tris.reserve(indices.count()/3);
     for(int i = 0; i < indices.count();i += 3){
-        QList<Vector3f> tri;
-        tri.reserve(3);
-        tri << Vector3f(vertices[indices[i]])
-            << Vector3f(vertices[indices[i + 1]])
-            << Vector3f(vertices[indices[i + 2]]);
+        Tri tri;
+        tri.v0 = vertices[indices[i]];
+        tri.v1 = vertices[indices[i + 1]];
+        tri.v2 = vertices[indices[i + 2]];
+        tri.centroid = (tri.v0 + tri.v1 + tri.v2) * 0.3333f;
         tris << std::move(tri);
     }
 }
@@ -75,18 +75,17 @@ bool ScalarField::isPointInsideMesh(const Vector3f &point)
     return checkIntersections(intersections,rayCount);
 }
 
-bool ScalarField::mollerTromboreIntersect(const Vector3f &point, const Vector3f &ray, const QList<Vector3f> &tri,  QList<Vector3f> &prevIntersect)
+bool ScalarField::mollerTromboreIntersect(const Vector3f &point, const Vector3f &ray, const Tri &tri,  QList<Vector3f> &prevIntersect)
 {
     constexpr float epsilon = std::numeric_limits<float>::epsilon();
-    if(tri.size() != 3) return false;
-    Vector3f edge1 = tri[1] - tri[0];
-    Vector3f edge2 = tri[2] - tri[0];
+    Vector3f edge1 = tri.v1 - tri.v0;
+    Vector3f edge2 = tri.v2 - tri.v0;
     Vector3f rayCross2 = ray.cross(edge2);
     float a = edge1.dot(rayCross2);
     if(std::fabs(a) < epsilon) return false;
 
     float f = 1.0 / a;
-    Vector3f s = point - tri[0];
+    Vector3f s = point - tri.v0;
     float u = f * s.dot(rayCross2);
     if (u < 0.0f || u > 1.0f) return false;
     Vector3f q = s.cross(edge1);
@@ -130,16 +129,16 @@ float ScalarField::minPointToTriDist(const Vector3f &point)
     return std::abs(minDistance);
 }
 
-float ScalarField::pointToTriDist(const Vector3f &point, const QList<Vector3f> &tri)
+float ScalarField::pointToTriDist(const Vector3f &point, const Tri &tri)
 {
-    Vector3f edgeBA = tri[1] - tri[0];
-    Vector3f edgeCA = tri[2] - tri[0];
+    Vector3f edgeBA = tri.v1 - tri.v0;
+    Vector3f edgeCA = tri.v2 - tri.v0;
     Vector3f n = edgeBA.cross(edgeCA);
-    Vector3f pa = point - tri[0];
+    Vector3f pa = point - tri.v0;
     float distance = abs(pa.dot(n)/ n.norm());
-    Vector3f edgeAB = tri[0] - tri[1];
-    Vector3f edgeAC = tri[0] - tri[2];
-    Vector3f ap = tri[0] - point;
+    Vector3f edgeAB = tri.v0 - tri.v1;
+    Vector3f edgeAC = tri.v0 - tri.v2;
+    Vector3f ap = tri.v0 - point;
     float denom = (edgeAB.cross(edgeAC)).norm();
     float u = (edgeAB.cross(ap)).norm() / denom;
     float v = (edgeAC.cross(ap)).norm() / denom;
@@ -147,8 +146,8 @@ float ScalarField::pointToTriDist(const Vector3f &point, const QList<Vector3f> &
     if (u >= 0 && v >= 0 && w >= 0)
         return distance;
     float minEdgeDist = std::min(ap.cross(edgeBA).norm() / edgeBA.norm(),
-                                 std::min((point - tri[1]).cross(tri[2]-tri[1]).norm() / (tri[2] - tri[1]).norm(),
-                                          (point - tri[2]).cross(edgeAC).norm() / edgeAC.norm()));
+                                 std::min((point - tri.v1).cross(tri.v2-tri.v1).norm() / (tri.v2 - tri.v1).norm(),
+                                          (point - tri.v2).cross(edgeAC).norm() / edgeAC.norm()));
     return minEdgeDist;
 }
 
