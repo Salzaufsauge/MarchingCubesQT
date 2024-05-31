@@ -14,11 +14,15 @@ void OutputWidget::buildMesh(const QList<Vector3f> &vertices, const QList<uint> 
 
 void OutputWidget::buildPreviewMesh(const QList<Vector3f> &vertices, const QList<uint> &indices)
 {
+    bool calculateNormals = false;
+#ifdef _WIN32
+        calculateNormals = true;
+#endif
     if(objectEntity->componentsOfType<Mesh>().isEmpty()){
-        previewMesh->buildMesh(vertices,indices,false);
+        previewMesh->buildMesh(vertices,indices,calculateNormals);
         objectEntity->addComponent(previewMesh);
     }else {
-        previewMesh->buildMesh(vertices,indices,false);
+        previewMesh->buildMesh(vertices,indices,calculateNormals);
     }
 }
 
