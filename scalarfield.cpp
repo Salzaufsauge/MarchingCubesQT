@@ -31,8 +31,28 @@ void ScalarField::calculateSDF(Grid &grid, const QList<Vector3f> &vertices, cons
     for (int i = 0; i < x; ++i){
         for(int j = 0; j < y; ++j){
             for(int k = 0; k < z; ++k){
-                bool inside = isPointInsideMeshBVH(pointList[i][j][k]);
+                bool inside = isPointInsideMesh(pointList[i][j][k]);
                 float dist = minPointToTriDist(pointList[i][j][k]);
+                grid.setSdfAt(i,j,k, inside ? -dist : dist);
+            }
+        }
+    }
+}
+
+void ScalarField::calculateSDFBVH(Grid &grid, const QList<Vector3f> &vertices, const QList<uint> &indices)
+{
+    generateTris(vertices, indices);
+    buildBvh();
+    const QList<QList<QList<Vector3f>>> &pointList = grid.getPoints();
+    int x = grid.getRes().x();
+    int y = grid.getRes().y();
+    int z = grid.getRes().z();
+#pragma omp parallel for collapse(3)
+    for (int i = 0; i < x; ++i){
+        for(int j = 0; j < y; ++j){
+            for(int k = 0; k < z; ++k){
+                bool inside = isPointInsideMeshBVH(pointList[i][j][k]);
+                float dist = minPointToTriDistBVH(pointList[i][j][k]);
                 grid.setSdfAt(i,j,k, inside ? -dist : dist);
             }
         }
@@ -52,7 +72,6 @@ void ScalarField::generateTris(const QList<Vector3f> &vertices, const QList<uint
         tri.centroid = (tri.v0 + tri.v1 + tri.v2) * 0.3333f;
         tris << std::move(tri);
     }
-    buildBvh();
 }
 
 bool ScalarField::isPointInsideMesh(const Vector3f &point)
@@ -133,17 +152,20 @@ bool ScalarField::checkIntersections(const QList<int> &intersections, int rayCou
 
 float ScalarField::minPointToTriDist(const Vector3f &point)
 {
-//     float minDistance = std::numeric_limits<float>::infinity();
-// #pragma omp parallel for
-//     for(const auto &tri : tris){
-//         float dist = pointToTriDist(point, tri);
-// #pragma omp critical
-//         minDistance = minDistance < dist ? minDistance : dist;
-//     }
-//     return std::abs(minDistance);
+    float minDistance = std::numeric_limits<float>::infinity();
+#pragma omp parallel for
+    for(const auto &tri : tris){
+        float dist = pointToTriDist(point, tri);
+#pragma omp critical
+        minDistance = minDistance < dist ? minDistance : dist;
+    }
+    return std::abs(minDistance);
+}
+
+float ScalarField::minPointToTriDistBVH(const Vector3f &point)
+{
     float minDistance = std::numeric_limits<float>::infinity();
 
-    // Traverse the BVH to find potential triangles closer to the point
     QStack<uint> nodesToVisit;
     nodesToVisit.push(rootNodeIdx);
 
@@ -152,10 +174,8 @@ float ScalarField::minPointToTriDist(const Vector3f &point)
         nodesToVisit.pop();
         BVHNode &node = bvhNode[nodeIdx];
 
-        // Check if the AABB of the node intersects with the point
         if (intersectPointAABB(point, node.aabbMin, node.aabbMax)) {
             if (node.isLeaf()) {
-                // Leaf node, iterate over triangles and calculate distances
 #pragma omp parallel for
                 for (int i = 0; i < node.triCount; ++i) {
                     const auto &tri = tris[node.firstTriIdx + i];
@@ -164,7 +184,6 @@ float ScalarField::minPointToTriDist(const Vector3f &point)
                     minDistance = std::min(minDistance, dist);
                 }
             } else {
-                // Non-leaf node, traverse child nodes
                 nodesToVisit.push(node.leftNode);
                 nodesToVisit.push(node.leftNode + 1);
             }

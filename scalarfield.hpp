@@ -19,6 +19,7 @@ class ScalarField
 public:
     ScalarField();
     void calculateSDF(Grid &grid,const QList<Vector3f> &vertices,const QList<uint> &indices);
+    void calculateSDFBVH(Grid &grid,const QList<Vector3f> &vertices,const QList<uint> &indices);
 private:
     QList<Tri> tris;
     QList<uint> triIdx;
@@ -32,6 +33,7 @@ private:
     bool mollerTromboreIntersect(const Vector3f &point,const Vector3f &ray, const Tri &tri, QList<Vector3f> &prevIntersect);
     bool checkIntersections(const QList<int> &intersections, int rayCount);
     float minPointToTriDist(const Vector3f &point);
+    float minPointToTriDistBVH(const Vector3f &point);
     float pointToTriDist(const Vector3f &point, const Tri &tri);
     void buildBvh();
     void updateNodeBounds(uint nodeIdx);

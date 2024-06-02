@@ -48,6 +48,7 @@ void MainWindow::disableUi()
     ui->speedLabel->setVisible(false);
     ui->resolutionLabel->setVisible(false);
     ui->resolutionSlider->setVisible(false);
+    ui->bvhBox->setVisible(false);
 }
 
 void MainWindow::uiModelLoaded()
@@ -58,6 +59,7 @@ void MainWindow::uiModelLoaded()
     ui->sfBtn->setVisible(true);
     ui->resolutionLabel->setVisible(true);
     ui->resolutionSlider->setVisible(true);
+    ui->bvhBox->setVisible(true);
 }
 
 void MainWindow::uiSFLoaded()
@@ -136,7 +138,13 @@ void MainWindow::sfBtnSlot()
         ui->statusEdit->setText(QString("constructing grid"));
         grid->constructGrid(res,in->getMesh()->getMaxExtend(),in->getMesh()->getMinExtend());
         ui->statusEdit->setText(QString("calculating scalar field"));
-        data.calculateSDF(*grid, in->getMesh()->getVertices(), in->getMesh()->getIndices());
+        QElapsedTimer timer;
+        timer.start();
+        if(ui->bvhBox->isChecked())
+            data.calculateSDFBVH(*grid, in->getMesh()->getVertices(), in->getMesh()->getIndices());
+        else
+            data.calculateSDF(*grid, in->getMesh()->getVertices(), in->getMesh()->getIndices());
+        qDebug() << timer.elapsed();
     });
 
     QFutureWatcher<void> *watcher = new QFutureWatcher<void>(this);
