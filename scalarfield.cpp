@@ -139,15 +139,16 @@ bool ScalarField::mollerTromboreIntersect(const Vector3f &point, const Vector3f 
 bool ScalarField::checkIntersections(const QList<int> &intersections, int rayCount)
 {
     bool res = false;
+    int in, out = 0;
     for(int i = 0; i < rayCount; ++i){
 
         if(intersections[i] % 2 == 1)
-            res = true;
-        else if(intersections[i] % 2 != 1 && intersections[i] > 0){
-            return false;
+            in++;
+        else if(intersections[i] % 2 != 1){
+            out++;
         }
     }
-    return res;
+    return in > out;
 }
 
 float ScalarField::minPointToTriDist(const Vector3f &point)

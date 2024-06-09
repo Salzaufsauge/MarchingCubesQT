@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->resolutionSlider, &QSlider::valueChanged,this,&MainWindow::resChangedSlot);
     connect(ui->speedSlider, &QSlider::valueChanged,this,&MainWindow::speedSliderSlot);
     connect(marchingController,&MarchingController::newData,this,&MainWindow::previewSlot);
+    connect(ui->conBtn,&QPushButton::clicked,this,&MainWindow::conBtnSlot);
 }
 
 MainWindow::~MainWindow()
@@ -49,6 +50,9 @@ void MainWindow::disableUi()
     ui->resolutionLabel->setVisible(false);
     ui->resolutionSlider->setVisible(false);
     ui->bvhBox->setVisible(false);
+    ui->isoSlider->setVisible(false);
+    ui->isoLabel->setVisible(false);
+    ui->conBtn->setVisible(false);
 }
 
 void MainWindow::uiModelLoaded()
@@ -74,6 +78,9 @@ void MainWindow::uiSFLoaded()
     ui->speedSlider->setVisible(true);
     ui->polyBtn->setVisible(true);
     ui->addonBox->setVisible(true);
+    ui->isoSlider->setVisible(true);
+    ui->isoLabel->setVisible(true);
+    ui->conBtn->setVisible(true);
 }
 
 MarchingFlags MainWindow::getSelectedFlag()
@@ -138,13 +145,10 @@ void MainWindow::sfBtnSlot()
         ui->statusEdit->setText(QString("constructing grid"));
         grid->constructGrid(res,in->getMesh()->getMaxExtend(),in->getMesh()->getMinExtend());
         ui->statusEdit->setText(QString("calculating scalar field"));
-        QElapsedTimer timer;
-        timer.start();
         if(ui->bvhBox->isChecked())
             data.calculateSDFBVH(*grid, in->getMesh()->getVertices(), in->getMesh()->getIndices());
         else
             data.calculateSDF(*grid, in->getMesh()->getVertices(), in->getMesh()->getIndices());
-        qDebug() << timer.elapsed();
     });
 
     QFutureWatcher<void> *watcher = new QFutureWatcher<void>(this);
@@ -178,7 +182,7 @@ void MainWindow::polyBtnSlot()
 
     QFuture<void> future = QtConcurrent::run([this]() {
         ui->statusEdit->setText(QString("calculating polygons"));
-        marchingController->calculatePolygons(*grid,0,vertices,indices,getFlags());
+        marchingController->calculatePolygons(*grid,static_cast<float>(ui->isoSlider->value()) / 100.0,vertices,indices,getFlags());
     });
 
     QFutureWatcher<void> *watcher = new QFutureWatcher<void>(this);
@@ -190,6 +194,27 @@ void MainWindow::polyBtnSlot()
         uiSFLoaded();
     });
     watcher->setFuture(future);
+}
+
+void MainWindow::conBtnSlot()
+{
+    disableUi();
+    for(float i = -10000.0;i <= 10000.0; i++){
+        vertices.clear();
+        indices.clear();
+        vertices.squeeze();
+        indices.squeeze();
+
+        marchingController->calculatePolygons(*grid,i / 10000.0,vertices,indices,static_cast<int>(MarchingFlags::MARCHING_CUBES));
+        if(!vertices.isEmpty()){
+            out->clearMesh();
+            out->buildMesh(vertices,indices);
+            QCoreApplication::processEvents();
+            QThread::msleep(5);
+        }
+    }
+    out->clearMesh();
+    uiSFLoaded();
 }
 
 void MainWindow::speedSliderSlot()

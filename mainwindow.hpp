@@ -53,6 +53,7 @@ private slots:
     void sfBtnSlot();
     void resChangedSlot();
     void polyBtnSlot();
+    void conBtnSlot();
     void speedSliderSlot();
     void previewSlot(QList<Vector3f> vertices, QList<uint> indices);
 };
