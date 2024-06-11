@@ -4,11 +4,11 @@ MarchingCubes::MarchingCubes(QObject *parent)
     : QObject{parent}
 {}
 
-void MarchingCubes::mc(const Grid &grid, float isolevel, QList<Vector3f> &vertices, QList<uint> &indices, int &speed)
+void MarchingCubes::mc(const Grid &grid, float isolevel, QList<Vector3f> &vertices, QList<uint> &indices, int &speed, bool useParallel)
 {
-    generateGridCells(grid);
+    generateGridCells(grid,useParallel);
     int i = 0;
-#pragma omp parallel for
+#pragma omp parallel for num_threads(useParallel ? omp_get_max_threads() : 1)
     for(auto &cell : gridCells){
         polygonise(cell,isolevel,vertices,indices);
         if(speed != 0){
@@ -16,19 +16,19 @@ void MarchingCubes::mc(const Grid &grid, float isolevel, QList<Vector3f> &vertic
 #pragma omp atomic update
             i++;
 #pragma omp critical(triTable)
-            if(i % 25 == 0) emit newData(vertices,indices);
+            if(i % 25 == 0 || !useParallel) emit newData(vertices,indices);
         }
     }
 }
 
-void MarchingCubes::generateGridCells(const Grid &grid)
+void MarchingCubes::generateGridCells(const Grid &grid, bool useParallel)
 {
     gridCells.clear();
     gridCells.squeeze();
     int resX = grid.getRes().x();
     int resY = grid.getRes().y();
     int resZ = grid.getRes().z();
-#pragma omp parallel
+#pragma omp parallel num_threads(useParallel ? omp_get_max_threads() : 1)
     {
         QList<GridCell> threadGridCells;
 #pragma omp for nowait

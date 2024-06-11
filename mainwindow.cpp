@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->dualRadioBtn->setProperty("flag",QVariant::fromValue(MarchingFlags::DUAL_MARCHING));
     ui->mtRadioBtn->setProperty("flag", QVariant::fromValue(MarchingFlags::MARCHING_TETRAHEDA));
     ui->smoothBox->setProperty("flag",QVariant::fromValue(MarchingFlags::SMOOTHING));
+    ui->paraBox->setProperty("flag",QVariant::fromValue(MarchingFlags::PARALLEL));
 
     connect( ui->loadBtn,&QPushButton::clicked,this, &MainWindow::loadBtnSlot);
     connect(in->getMesh(),&Mesh::dataExtracted,this,&MainWindow::modelLoadedSlot);
@@ -95,6 +96,7 @@ int MainWindow::getFlags()
 {
     int flags = static_cast<int>(getSelectedFlag());
     if(ui->smoothBox->isChecked()) flags |= static_cast<int>(ui->smoothBox->property("flag").value<MarchingFlags>());
+    if(ui->paraBox->isChecked()) flags |= static_cast<int>(ui->paraBox->property("flag").value<MarchingFlags>());
     return flags;
 }
 
@@ -102,9 +104,9 @@ void MainWindow::loadBtnSlot()
 {
     disableUi();
     QUrl newModelUrl = QUrl::fromLocalFile(QFileDialog::getOpenFileName(this,
-                                                                tr("Open Model"),
-                                                                QStandardPaths::writableLocation(QStandardPaths::DownloadLocation),
-                                                                tr("Model files (*.obj)")));
+                                                                        tr("Open Model"),
+                                                                        QStandardPaths::writableLocation(QStandardPaths::DownloadLocation),
+                                                                        tr("Model files (*.obj)")));
     if(newModelUrl.isEmpty()){
         qDebug() << "No model loaded";
         ui->loadBtn->setVisible(true);
@@ -145,10 +147,7 @@ void MainWindow::sfBtnSlot()
         ui->statusEdit->setText(QString("constructing grid"));
         grid->constructGrid(res,in->getMesh()->getMaxExtend(),in->getMesh()->getMinExtend());
         ui->statusEdit->setText(QString("calculating scalar field"));
-        if(ui->bvhBox->isChecked())
-            data.calculateSDFBVH(*grid, in->getMesh()->getVertices(), in->getMesh()->getIndices());
-        else
-            data.calculateSDF(*grid, in->getMesh()->getVertices(), in->getMesh()->getIndices());
+        data.calculateSDF(*grid, in->getMesh()->getVertices(), in->getMesh()->getIndices(),ui->bvhBox->isChecked());
     });
 
     QFutureWatcher<void> *watcher = new QFutureWatcher<void>(this);

@@ -1,63 +1,58 @@
 #include "scalarfield.hpp"
 
 ScalarField::ScalarField()
+    :rays{
+        {1.f, 0.f, 0.f},
+        {0.f, 1.f, 0.f},
+        {0.f, 0.f, 1.f},
+        {-1.f, 0.f, 0.f},
+        {0.f, -1.f, 0.f},
+        {0.f, 0.f, -1.f},
+        {1.f, 1.f, 1.f},
+        {-1.f, -1.f, -1.f},
+        {1.f, -0.5f, 0.5f},
+        {0.5f, 1.f, -0.5f},
+        {-0.5f, -0.5f, 1.f},
+        {-1.f, 0.5f, -0.5f},
+        {0.5f, -1.f, -0.5f},
+        {-0.5f, -0.5f, -1.f}
+    }
+{}
+
+/*
+Generates Triangles from given vertices and indices, then wanders through every point in grid to calculate the sdf
+*/
+void ScalarField::calculateSDF(Grid &grid, const QList<Vector3f> &vertices, const QList<uint> &indices, bool useBVH)
 {
-    rays = QList<Vector3f>{
-        Vector3f(1.f, 0.f, 0.f),
-        Vector3f(0.f, 1.f, 0.f),
-        Vector3f(0.f, 0.f, 1.f),
-        Vector3f(-1.f, 0.f, 0.f),
-        Vector3f(0.f, -1.f, 0.f),
-        Vector3f(0.f, 0.f, -1.f),
-        Vector3f(1.f, 1.f, 1.f),
-        Vector3f(-1.f, -1.f, -1.f),
-        Vector3f(1.f, -0.5f, 0.5f),
-        Vector3f(0.5f, 1.f, -0.5f),
-        Vector3f(-0.5f, -0.5f, 1.f),
-        Vector3f(-1.f, 0.5f, -0.5f),
-        Vector3f(0.5f, -1.f, -0.5f),
-        Vector3f(-0.5f, -0.5f, -1.f)
+    generateTris(vertices, indices);
+    if(useBVH)
+        buildBvh();
+    const auto &pointList = grid.getPoints();
+    int x = grid.getRes().x();
+    int y = grid.getRes().y();
+    int z = grid.getRes().z();
+
+    auto sdfCalculation = [&](int i, int j, int k) {
+        const Vector3f &point = pointList[i][j][k];
+        bool inside = useBVH ? isPointInsideMeshBVH(point) : isPointInsideMesh(point);
+        float dist = useBVH ? minPointToTriDistBVH(point) : minPointToTriDist(point);
+        grid.setSdfAt(i, j, k, inside ? -dist : dist);
     };
-}
 
-void ScalarField::calculateSDF(Grid &grid, const QList<Vector3f> &vertices, const QList<uint> &indices)
-{
-    generateTris(vertices, indices);
-    const QList<QList<QList<Vector3f>>> &pointList = grid.getPoints();
-    int x = grid.getRes().x();
-    int y = grid.getRes().y();
-    int z = grid.getRes().z();
+    QElapsedTimer t;
+    t.start();
 #pragma omp parallel for collapse(3)
     for (int i = 0; i < x; ++i){
         for(int j = 0; j < y; ++j){
             for(int k = 0; k < z; ++k){
-                bool inside = isPointInsideMesh(pointList[i][j][k]);
-                float dist = minPointToTriDist(pointList[i][j][k]);
-                grid.setSdfAt(i,j,k, inside ? -dist : dist);
+                sdfCalculation(i,j,k);
             }
         }
     }
+    qDebug() << t.elapsed();
 }
 
-void ScalarField::calculateSDFBVH(Grid &grid, const QList<Vector3f> &vertices, const QList<uint> &indices)
-{
-    generateTris(vertices, indices);
-    buildBvh();
-    const QList<QList<QList<Vector3f>>> &pointList = grid.getPoints();
-    int x = grid.getRes().x();
-    int y = grid.getRes().y();
-    int z = grid.getRes().z();
-#pragma omp parallel for collapse(3)
-    for (int i = 0; i < x; ++i){
-        for(int j = 0; j < y; ++j){
-            for(int k = 0; k < z; ++k){
-                bool inside = isPointInsideMeshBVH(pointList[i][j][k]);
-                float dist = minPointToTriDistBVH(pointList[i][j][k]);
-                grid.setSdfAt(i,j,k, inside ? -dist : dist);
-            }
-        }
-    }
-}
+
 //Populates a list of tris
 void ScalarField::generateTris(const QList<Vector3f> &vertices, const QList<uint> &indices)
 {
@@ -69,11 +64,11 @@ void ScalarField::generateTris(const QList<Vector3f> &vertices, const QList<uint
         tri.v0 = vertices[indices[i]];
         tri.v1 = vertices[indices[i + 1]];
         tri.v2 = vertices[indices[i + 2]];
-        tri.centroid = (tri.v0 + tri.v1 + tri.v2) * 0.3333f;
+        tri.centroid = (tri.v0 + tri.v1 + tri.v2) / 3.f;
         tris << std::move(tri);
     }
 }
-
+//Uses Müller-Trumbore Algorithm to calculate if a given point is inside a Mesh
 bool ScalarField::isPointInsideMesh(const Vector3f &point)
 {
     int rayCount = rays.count();
@@ -85,8 +80,7 @@ bool ScalarField::isPointInsideMesh(const Vector3f &point)
     for(int i = 0; i < rayCount; ++i){
         QList<Vector3f> prevIntersect;
         for(int j = 0; j < trisCount; j++){
-            bool r = mollerTromboreIntersect(point,rays[i],tris[j], prevIntersect);
-            if(r) {
+            if(mollerTromboreIntersect(point,rays[i],tris[j], prevIntersect)) {
 #pragma omp atomic update
                 intersections[i]++;
             }
@@ -94,7 +88,7 @@ bool ScalarField::isPointInsideMesh(const Vector3f &point)
     }
     return checkIntersections(intersections,rayCount);
 }
-
+//Optimized variant of isPointInsideMesh using BVH
 bool ScalarField::isPointInsideMeshBVH(const Vector3f &point)
 {
     int rayCount = rays.count();
@@ -106,7 +100,7 @@ bool ScalarField::isPointInsideMeshBVH(const Vector3f &point)
     }
     return checkIntersections(intersections,rayCount);
 }
-
+//Müller-Trumbore Algorithm with added check if point is between triangles
 bool ScalarField::mollerTromboreIntersect(const Vector3f &point, const Vector3f &ray, const Tri &tri,  QList<Vector3f> &prevIntersect)
 {
     constexpr float epsilon = std::numeric_limits<float>::epsilon();
@@ -141,28 +135,22 @@ bool ScalarField::checkIntersections(const QList<int> &intersections, int rayCou
     bool res = false;
     int in, out = 0;
     for(int i = 0; i < rayCount; ++i){
-
-        if(intersections[i] % 2 == 1)
-            in++;
-        else if(intersections[i] % 2 != 1){
-            out++;
-        }
+        intersections[i] % 2 == 1 ? in++ : out++;
     }
     return in > out;
 }
-
+//calculates the nearest triangle from a given point
 float ScalarField::minPointToTriDist(const Vector3f &point)
 {
     float minDistance = std::numeric_limits<float>::infinity();
-#pragma omp parallel for
+#pragma omp parallel for reduction(min : minDistance)
     for(const auto &tri : tris){
         float dist = pointToTriDist(point, tri);
-#pragma omp critical
         minDistance = minDistance < dist ? minDistance : dist;
     }
     return std::abs(minDistance);
 }
-
+//optimized version of MinPointToTriDist using BVH
 float ScalarField::minPointToTriDistBVH(const Vector3f &point)
 {
     float minDistance = std::numeric_limits<float>::infinity();
@@ -177,11 +165,10 @@ float ScalarField::minPointToTriDistBVH(const Vector3f &point)
 
         if (intersectPointAABB(point, node.aabbMin, node.aabbMax)) {
             if (node.isLeaf()) {
-#pragma omp parallel for
+#pragma omp parallel for reduction(min : minDistance)
                 for (int i = 0; i < node.triCount; ++i) {
                     const auto &tri = tris[node.firstTriIdx + i];
                     float dist = pointToTriDist(point, tri);
-#pragma omp critical
                     minDistance = std::min(minDistance, dist);
                 }
             } else {
@@ -193,7 +180,7 @@ float ScalarField::minPointToTriDistBVH(const Vector3f &point)
 
     return std::abs(minDistance);
 }
-
+//calculates the distance of a given point to a triangle
 float ScalarField::pointToTriDist(const Vector3f &point, const Tri &tri)
 {
     Vector3f edgeBA = tri.v1 - tri.v0;
@@ -284,7 +271,7 @@ void ScalarField::subdivide(uint nodeIdx)
     subdivide( leftChildIdx );
     subdivide( rightChildIdx );
 }
-
+//Used in isPointInsideMeshBVH to avoid unnecessary calculations
 void ScalarField::traverseBVH(const Vector3f &point, const Vector3f &ray, QList<Vector3f> &prevIntersect, int &intersectionCount)
 {
     QStack<uint> nodesToVisit;
@@ -313,7 +300,7 @@ void ScalarField::traverseBVH(const Vector3f &point, const Vector3f &ray, QList<
         }
     }
 }
-
+//check if ray intersects with bounding box
 bool ScalarField::intersectRayAABB(const Vector3f &point, const Vector3f &ray, const Vector3f &aabbMin, const Vector3f &aabbMax)
 {
     float tmin = (aabbMin.x() - point.x()) / ray.x();

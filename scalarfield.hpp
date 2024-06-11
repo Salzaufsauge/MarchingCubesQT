@@ -18,7 +18,7 @@ class ScalarField
 {
 public:
     ScalarField();
-    void calculateSDF(Grid &grid,const QList<Vector3f> &vertices,const QList<uint> &indices);
+    void calculateSDF(Grid &grid,const QList<Vector3f> &vertices,const QList<uint> &indices, bool useBVH);
     void calculateSDFBVH(Grid &grid,const QList<Vector3f> &vertices,const QList<uint> &indices);
 private:
     QList<Tri> tris;

@@ -15,10 +15,10 @@ class MarchingCubes : public QObject
     Q_OBJECT
 public:
     MarchingCubes(QObject *parent = nullptr);
-    void mc(const Grid &grid,float isolevel, QList<Vector3f> &vertices, QList<uint> &indices, int &speed);
+    void mc(const Grid &grid,float isolevel, QList<Vector3f> &vertices, QList<uint> &indices, int &speed, bool useParallel);
 
 private:
-    void generateGridCells(const Grid &grid);
+    void generateGridCells(const Grid &grid, bool useParallel);
     void polygonise(GridCell &cell, float isolevel, QList<Vector3f> &vertices, QList<uint> &indices);
     Vector3f LinearInterpolate(Vector3f p1, Vector3f p2, float isolevel, float valp1, float valp2);
 

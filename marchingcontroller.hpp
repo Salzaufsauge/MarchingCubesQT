@@ -7,7 +7,8 @@ enum class MarchingFlags {
     MARCHING_CUBES = 1,
     DUAL_MARCHING = 2,
     MARCHING_TETRAHEDA = 4,
-    SMOOTHING = 8
+    SMOOTHING = 8,
+    PARALLEL = 16
 };
 
 class MarchingController : public QObject

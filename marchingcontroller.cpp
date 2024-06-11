@@ -16,8 +16,9 @@ void MarchingController::setSpeed(int newSpeed)
 void MarchingController::calculatePolygons(const Grid &grid, float isolevel, QList<Vector3f> &vertices, QList<uint> &indices, int flags)
 {
     running = true;
+    bool useParallel = (flags & static_cast<int>(MarchingFlags::PARALLEL)) == static_cast<int>(MarchingFlags::PARALLEL);
     if((flags & static_cast<int>(MarchingFlags::MARCHING_CUBES)) == static_cast<int>(MarchingFlags::MARCHING_CUBES))
-        mc->mc(grid,isolevel,vertices,indices,speed);
+        mc->mc(grid,isolevel,vertices,indices,speed, useParallel);
     else if((flags & static_cast<int>(MarchingFlags::DUAL_MARCHING)) == static_cast<int>(MarchingFlags::DUAL_MARCHING)) qDebug() << "not implemented";
     else if((flags & static_cast<int>(MarchingFlags::MARCHING_TETRAHEDA)) == static_cast<int>(MarchingFlags::DUAL_MARCHING)) qDebug() << "not implemented";
 

@@ -20,7 +20,7 @@
    <string>Marching Cubes</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="face-smile"/>
+   <iconset theme="applications-graphics"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
@@ -204,6 +204,16 @@
             </property>
             <property name="checkable">
              <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QCheckBox" name="paraBox">
+            <property name="text">
+             <string>Parallel Calculation</string>
             </property>
             <property name="checked">
              <bool>true</bool>
