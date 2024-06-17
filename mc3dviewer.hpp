@@ -1,6 +1,7 @@
 #pragma once
 
 #include "mesh.hpp"
+#include "wireframematerial.hpp"
 #include <QObject>
 #include <QtWidgets>
 #include <QtCore>
@@ -22,9 +23,9 @@ protected:
     QWidget *widget;
     Qt3DCore::QEntity *rootEntity;
     Qt3DCore::QEntity *objectEntity;
-    Qt3DExtras::QGoochMaterial *material;
+    WireframeMaterial *material;
     Qt3DExtras::Qt3DWindow *view;
-    Qt3DRender::QCamera *inputCam;
+    Qt3DRender::QCamera *camera;
     Qt3DCore::QEntity *lightEntity;
     Qt3DRender::QPointLight *light;
     Qt3DCore::QTransform *lightTransform;

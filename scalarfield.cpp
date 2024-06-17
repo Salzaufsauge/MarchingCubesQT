@@ -39,8 +39,6 @@ void ScalarField::calculateSDF(Grid &grid, const QList<Vector3f> &vertices, cons
         grid.setSdfAt(i, j, k, inside ? -dist : dist);
     };
 
-    QElapsedTimer t;
-    t.start();
 #pragma omp parallel for collapse(3)
     for (int i = 0; i < x; ++i){
         for(int j = 0; j < y; ++j){
@@ -49,7 +47,6 @@ void ScalarField::calculateSDF(Grid &grid, const QList<Vector3f> &vertices, cons
             }
         }
     }
-    qDebug() << t.elapsed();
 }
 
 

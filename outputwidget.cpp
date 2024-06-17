@@ -26,13 +26,6 @@ void OutputWidget::buildPreviewMesh(const QList<Vector3f> &vertices, const QList
     }
 }
 
-void OutputWidget::buildWireframe(const QList<QList<Vector3f> > &cells)
-{
-    // for(auto &cell : cells){
-
-    // }
-}
-
 void OutputWidget::clearMesh()
 {
     if(!objectEntity->componentsOfType<Mesh>().isEmpty())
@@ -41,11 +34,6 @@ void OutputWidget::clearMesh()
 
 void OutputWidget::clearPreview()
 {
-    // for(auto cell : wireframe){
-    //     objectEntity->removeComponent(cell);
-    //     delete cell;
-    // }
-    // wireframe.clear();
     objectEntity->removeComponent(previewMesh);
 }
 

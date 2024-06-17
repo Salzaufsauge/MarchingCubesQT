@@ -17,10 +17,9 @@ Mc3DViewer::Mc3DViewer(QVBoxLayout *vboxLayout,QWidget* parent)
 
     mesh = new Mesh(objectEntity);
 
-    material = new Qt3DExtras::QGoochMaterial(objectEntity);
-    material->setDiffuse(Qt::red);
-    objectEntity->addComponent(material);
+    material = new WireframeMaterial();
 
+    objectEntity->addComponent(material);
     view->setRootEntity(rootEntity);
 }
 
@@ -28,16 +27,15 @@ Mc3DViewer::~Mc3DViewer()
 {
     delete rootEntity;
     delete view;
-    //delete mesh;
 }
 
 void Mc3DViewer::initCamera()
 {
-    inputCam = view->camera();
-    inputCam->lens()->setPerspectiveProjection(50.0f,16.0f/9.0f,0.1f,1000.0f);
-    inputCam->setPosition(QVector3D(0,0,10.0f));
-    inputCam->setUpVector(QVector3D(0,1,0));
-    inputCam->setViewCenter(QVector3D(0,0,0));
+    camera = view->camera();
+    camera->lens()->setPerspectiveProjection(50.0f,16.0f/9.0f,0.1f,1000.0f);
+    camera->setPosition(QVector3D(0,0,10.0f));
+    camera->setUpVector(QVector3D(0,1,0));
+    camera->setViewCenter(QVector3D(0,0,0));
 
     lightEntity = new Qt3DCore::QEntity(rootEntity);
 
@@ -47,11 +45,11 @@ void Mc3DViewer::initCamera()
     lightEntity->addComponent(light);
 
     lightTransform = new Qt3DCore::QTransform(lightEntity);
-    lightTransform->setTranslation(inputCam->position());
+    lightTransform->setTranslation(camera->position());
     lightEntity->addComponent(lightTransform);
 
     camController = new Qt3DExtras::QFirstPersonCameraController(rootEntity);
-    camController->setCamera(inputCam);
+    camController->setCamera(camera);
 }
 
 Mesh *Mc3DViewer::getMesh() const

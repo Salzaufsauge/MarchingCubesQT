@@ -50,6 +50,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         mesh.hpp mesh.cpp
         marchingcontroller.hpp marchingcontroller.cpp
         bvh.hpp bvh.cpp
+        shaders/wireframe.vert
+        shaders/wireframe.frag
+        shaders/wireframe.geom
+        resource.qrc
+        wireframematerial.hpp wireframematerial.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MarchingCubesQT APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
