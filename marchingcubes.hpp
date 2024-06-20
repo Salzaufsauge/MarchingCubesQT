@@ -316,5 +316,5 @@ private:
             {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}}
         }};
 signals:
-    void newData(QList<Vector3f> previewVertices, QList<uint> previewIndices);
+    void newData(const QList<Vector3f> &previewVertices,const QList<uint> &previewIndices);
 };

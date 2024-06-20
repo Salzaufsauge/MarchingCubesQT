@@ -89,8 +89,6 @@ void Mesh::buildMesh(const QList<Vector3f> &vertices, const QList<uint> &indices
 {
     this->vertices = vertices;
     this->indices = indices;
-    normals.clear();
-    normals.resize(vertices.size(), Vector3f(0.0f, 0.0f, 0.0f));
 
     Qt3DCore::QGeometry *geom = new Qt3DCore::QGeometry(this);
     Qt3DCore::QBuffer *vertexDataBuffer = new Qt3DCore::QBuffer(geom);
@@ -135,6 +133,8 @@ void Mesh::buildMesh(const QList<Vector3f> &vertices, const QList<uint> &indices
     geom->addAttribute(indexAttribute);
 
     if(withNormals){
+        normals.clear();
+        normals.resize(vertices.size(), Vector3f(0.0f, 0.0f, 0.0f));
         calculateVertexNormals(vertices,indices,normals);
         Qt3DCore::QBuffer *normDataBuffer = new Qt3DCore::QBuffer(geom);
         Qt3DCore::QAttribute *normAttribute = new Qt3DCore::QAttribute();
@@ -156,47 +156,7 @@ void Mesh::buildMesh(const QList<Vector3f> &vertices, const QList<uint> &indices
         normAttribute->setCount(normals.size());
         geom->addAttribute(normAttribute);
     }
-
     setGeometry(geom);
-}
-
-void Mesh::addPolygon(const QList<Vector3f> &vertices, const QList<uint> &indices)
-{
-    Qt3DCore::QAttribute *positionAttribute;
-    Qt3DCore::QAttribute *indexAttribute;
-
-    auto attrList = geometry()->attributes();
-    for(auto attr : attrList){
-        if(attr->attributeType() == Qt3DCore::QAttribute::AttributeType::IndexAttribute) indexAttribute = attr;
-        else if(attr->name() == Qt3DCore::QAttribute::defaultPositionAttributeName()) positionAttribute = attr;
-    }
-
-    auto *vertexBuffer = positionAttribute->buffer();
-    QByteArray vertexData = vertexBuffer->data();
-    int vertexCount = positionAttribute->count();
-
-    auto *indexBuffer = indexAttribute->buffer();
-    QByteArray indexData = indexBuffer->data();
-    int indexCount = indexAttribute->count();
-
-    QByteArray newVertexData;
-    newVertexData.resize(vertexData.size() + vertices.size() * sizeof(float));
-    memcpy(newVertexData.data(), vertexData.data(), vertexData.size());
-    memcpy(newVertexData.data() + vertexData.size(), vertices.data(), vertices.size() * sizeof(float));
-
-    QByteArray newIndexData;
-    newIndexData.resize(indexData.size() + indices.size() * sizeof(unsigned int));
-    memcpy(newIndexData.data(), indexData.data(), indexData.size());
-    unsigned int *newIndicesPtr = reinterpret_cast<unsigned int*>(newIndexData.data() + indexData.size());
-    for (size_t i = 0; i < indices.size(); ++i) {
-        newIndicesPtr[i] = indices[i] + vertexCount;
-    }
-
-    vertexBuffer->setData(newVertexData);
-    indexBuffer->setData(newIndexData);
-
-    positionAttribute->setCount(vertexCount + vertices.size() / 3);
-    indexAttribute->setCount(indexCount + indices.size());
 }
 
 const QList<Vector3f> &Mesh::getNormals() const

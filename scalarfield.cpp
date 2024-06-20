@@ -75,9 +75,8 @@ bool ScalarField::isPointInsideMesh(const Vector3f &point)
 
 #pragma omp parallel for
     for(int i = 0; i < rayCount; ++i){
-        QList<Vector3f> prevIntersect;
         for(int j = 0; j < trisCount; j++){
-            if(mollerTromboreIntersect(point,rays[i],tris[j], prevIntersect)) {
+            if(mollerTromboreIntersect(point,rays[i],tris[j])) {
 #pragma omp atomic update
                 intersections[i]++;
             }
@@ -92,13 +91,12 @@ bool ScalarField::isPointInsideMeshBVH(const Vector3f &point)
     QList<int> intersections(rayCount, 0);
 #pragma omp parallel for
     for(int i = 0; i < rayCount; ++i) {
-        QList<Vector3f> prevIntersect;
-        traverseBVH(point, rays[i], prevIntersect, intersections[i]);
+        traverseBVH(point, rays[i], intersections[i]);
     }
     return checkIntersections(intersections,rayCount);
 }
-//Müller-Trumbore Algorithm with added check if point is between triangles
-bool ScalarField::mollerTromboreIntersect(const Vector3f &point, const Vector3f &ray, const Tri &tri,  QList<Vector3f> &prevIntersect)
+//Müller-Trumbore Algorithm for ray intersection
+bool ScalarField::mollerTromboreIntersect(const Vector3f &point, const Vector3f &ray, const Tri &tri)
 {
     constexpr float epsilon = std::numeric_limits<float>::epsilon();
     Vector3f edge1 = tri.v1 - tri.v0;
@@ -115,15 +113,8 @@ bool ScalarField::mollerTromboreIntersect(const Vector3f &point, const Vector3f 
     float v = f * ray.dot(q);
     if (v < 0.0f || (u + v) > 1.0f) return false;
     float t = f * edge2.dot(q);
-    if (t > epsilon) {
-        Vector3f uniqueIntersect = point + ray * t;
-        float epsilonSquared = epsilon * epsilon;
-        for(auto prev : prevIntersect){
-            if((prev - uniqueIntersect).squaredNorm() < epsilonSquared) return false;
-        }
-        prevIntersect << uniqueIntersect;
+    if (t > epsilon)
         return true;
-    }
     else return false;
 }
 
@@ -269,7 +260,7 @@ void ScalarField::subdivide(uint nodeIdx)
     subdivide( rightChildIdx );
 }
 //Used in isPointInsideMeshBVH to avoid unnecessary calculations
-void ScalarField::traverseBVH(const Vector3f &point, const Vector3f &ray, QList<Vector3f> &prevIntersect, int &intersectionCount)
+void ScalarField::traverseBVH(const Vector3f &point, const Vector3f &ray, int &intersectionCount)
 {
     QStack<uint> nodesToVisit;
     nodesToVisit.push(rootNodeIdx);
@@ -286,7 +277,7 @@ void ScalarField::traverseBVH(const Vector3f &point, const Vector3f &ray, QList<
         if (node.isLeaf()) {
 #pragma omp parallel for
             for (int i = 0; i < node.triCount; ++i) {
-                if (mollerTromboreIntersect(point, ray, tris[node.firstTriIdx + i], prevIntersect)) {
+                if (mollerTromboreIntersect(point, ray, tris[node.firstTriIdx + i])) {
 #pragma omp atomic update
                     intersectionCount++;
                 }

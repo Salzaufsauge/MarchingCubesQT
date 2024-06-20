@@ -31,7 +31,7 @@ bool MarchingController::getRunning() const
     return running;
 }
 
-void MarchingController::newDataSlot(QList<Vector3f> previewVertices, QList<uint> previewIndices)
+void MarchingController::newDataSlot(const QList<Vector3f> &previewVertices,const QList<uint> &previewIndices)
 {
     emit newData(previewVertices, previewIndices);
 }

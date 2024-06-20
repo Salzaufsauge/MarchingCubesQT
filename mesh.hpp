@@ -17,7 +17,6 @@ public:
     Vector3f getMaxExtend() const;
     Vector3f getMinExtend() const;
     void buildMesh(const QList<Vector3f> &vertices, const QList<uint> &indices, bool withNormals = true);
-    void addPolygon(const QList<Vector3f> &vertices, const QList<uint> &indices);
     const QList<Vector3f> &getNormals() const;
 
 private:
