@@ -29,10 +29,10 @@ find_package(OpenMP)
 
 
 set(PROJECT_SOURCES
-    main.cpp
-    mainwindow.cpp
-    mainwindow.hpp
-    mainwindow.ui
+    src/main.cpp
+    src/mainwindow.cpp
+    src/mainwindow.hpp
+    src/mainwindow.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -41,20 +41,20 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(MarchingCubesQT
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        mc3dviewer.hpp mc3dviewer.cpp
-        inputwidget.hpp inputwidget.cpp
-        outputwidget.hpp outputwidget.cpp
-        scalarfield.hpp scalarfield.cpp
-        grid.hpp grid.cpp
-        marchingcubes.hpp marchingcubes.cpp
-        mesh.hpp mesh.cpp
-        marchingcontroller.hpp marchingcontroller.cpp
-        bvh.hpp bvh.cpp
+        src/mc3dviewer.hpp src/mc3dviewer.cpp
+        src/inputwidget.hpp src/inputwidget.cpp
+        src/outputwidget.hpp src/outputwidget.cpp
+        src/scalarfield.hpp src/scalarfield.cpp
+        src/grid.hpp src/grid.cpp
+        src/marchingcubes.hpp src/marchingcubes.cpp
+        src/mesh.hpp src/mesh.cpp
+        src/marchingcontroller.hpp src/marchingcontroller.cpp
+        src/bvh.hpp src/bvh.cpp
         shaders/wireframe.vert
         shaders/wireframe.frag
         shaders/wireframe.geom
         resource.qrc
-        wireframematerial.hpp wireframematerial.cpp
+        src/wireframematerial.hpp src/wireframematerial.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MarchingCubesQT APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
