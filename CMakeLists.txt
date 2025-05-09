@@ -9,24 +9,16 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS
+find_package(Qt6 REQUIRED COMPONENTS
     Widgets
     3DCore
     3DRender
     3DInput
     3DExtras
 )
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS
-    Widgets
-    3DCore
-    3DRender
-    3DInput
-    3DExtras
-)
+
 find_package(Eigen3 CONFIG REQUIRED)
 find_package(OpenMP)
-
-
 
 set(PROJECT_SOURCES
     src/main.cpp
@@ -34,64 +26,37 @@ set(PROJECT_SOURCES
     src/mainwindow.hpp
     src/mainwindow.ui
 )
-
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-
-
-    qt_add_executable(MarchingCubesQT
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
-        src/mc3dviewer.hpp src/mc3dviewer.cpp
-        src/inputwidget.hpp src/inputwidget.cpp
-        src/outputwidget.hpp src/outputwidget.cpp
-        src/scalarfield.hpp src/scalarfield.cpp
-        src/grid.hpp src/grid.cpp
-        src/marchingcubes.hpp src/marchingcubes.cpp
-        src/mesh.hpp src/mesh.cpp
-        src/marchingcontroller.hpp src/marchingcontroller.cpp
-        src/bvh.hpp src/bvh.cpp
-        shaders/wireframe.vert
-        shaders/wireframe.frag
-        shaders/wireframe.geom
-        resource.qrc
-        src/wireframematerial.hpp src/wireframematerial.cpp
-    )
-# Define target properties for Android with Qt 6 as:
-#    set_property(TARGET MarchingCubesQT APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
-# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
-else()
-    if(ANDROID)
-        add_library(MarchingCubesQT SHARED
-            ${PROJECT_SOURCES}
-        )
-    # Define properties for Android with Qt 5 after find_package() calls as:
-    #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-else()
-    add_executable(MarchingCubesQT
-        ${PROJECT_SOURCES}
-    )
-endif()
-endif()
+qt_add_executable(MarchingCubesQT
+    MANUAL_FINALIZATION
+    ${PROJECT_SOURCES}
+    src/mc3dviewer.hpp src/mc3dviewer.cpp
+    src/inputwidget.hpp src/inputwidget.cpp
+    src/outputwidget.hpp src/outputwidget.cpp
+    src/scalarfield.hpp src/scalarfield.cpp
+    src/grid.hpp src/grid.cpp
+    src/marchingcubes.hpp src/marchingcubes.cpp
+    src/mesh.hpp src/mesh.cpp
+    src/marchingcontroller.hpp src/marchingcontroller.cpp
+    src/bvh.hpp src/bvh.cpp
+    shaders/wireframe.vert
+    shaders/wireframe.frag
+    shaders/wireframe.geom
+    resource.qrc
+    src/wireframematerial.hpp src/wireframematerial.cpp
+)
 
 target_link_libraries(MarchingCubesQT PRIVATE
-    Qt${QT_VERSION_MAJOR}::Widgets
-    Qt${QT_VERSION_MAJOR}::3DCore
-    Qt${QT_VERSION_MAJOR}::3DRender
-    Qt${QT_VERSION_MAJOR}::3DInput
-    Qt${QT_VERSION_MAJOR}::3DExtras
+    Qt6::Widgets
+    Qt6::3DCore
+    Qt6::3DRender
+    Qt6::3DInput
+    Qt6::3DExtras
+    Eigen3::Eigen
 )
-target_link_libraries(MarchingCubesQT PRIVATE Eigen3::Eigen)
 if(OpenMP_CXX_FOUND)
     target_link_libraries(MarchingCubesQT PUBLIC OpenMP::OpenMP_CXX)
 endif()
 
-# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
-# If you are developing for iOS or macOS you should consider setting an
-# explicit, fixed bundle identifier manually though.
-if(${QT_VERSION} VERSION_LESS 6.1.0)
-    set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.MarchingCubesQT)
-endif()
 set_target_properties(MarchingCubesQT PROPERTIES
     ${BUNDLE_ID_OPTION}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
